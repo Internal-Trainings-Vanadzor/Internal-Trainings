@@ -8,6 +8,8 @@
 bool are_correct_brackets (char left, char right) {
     return left == '{' && right == '}' or 
         left == '(' && right == ')' or 
+        left == '"' && right == '"' or 
+        left == '\'' && right == '\'' or 
         left == '[' && right == ']';
 }
 
@@ -18,22 +20,28 @@ bool is_correct_expression (const std::string& expression) {
     int i = 0;
     bool is_correct = true;
     std::stack<char> left;
-    for(i = 0; i < expression.size() && is_correct; ++i) {
+    for(i = 0; i < expression.size(); ++i) {
         char el = expression[i];
         switch(el) {
             case '{': case '(': case '[':
                 left.push(el);
                 break;
             case '}': case ')': case ']':
-                if (!left.size() || !are_correct_brackets(left.top(), el)) {
-                    is_correct = false;
+                if (left.empty() || !are_correct_brackets(left.top(), el)) {
+                    return false;
+                }
+                left.pop();
+                break;
+             case '"': case '\'':
+                if (left.empty() || !are_correct_brackets(left.top(), el)) {
+                    left.push(el);
                 } else {
                     left.pop();
                 }
                 break;
         }
     }
-    return is_correct && !left.size() && i == expression.size();
+    return left.empty();
 }
 
 int main () {
