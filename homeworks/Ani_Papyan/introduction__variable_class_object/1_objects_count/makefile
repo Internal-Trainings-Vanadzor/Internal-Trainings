@@ -8,4 +8,4 @@ myClass.o: myClass.cpp myClass.hpp
 	@g++ -c $< -o $@
 
 clean:
-	rm *.o program
+	@rm -f *.o program
