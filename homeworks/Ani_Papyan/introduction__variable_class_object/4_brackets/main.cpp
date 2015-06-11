@@ -17,10 +17,8 @@ bool are_correct_brackets (char left, char right) {
  * This functions checks if the brackets of the given expression are correct.
  */
 bool is_correct_expression (const std::string& expression) {
-    int i = 0;
-    bool is_correct = true;
     std::stack<char> left;
-    for(i = 0; i < expression.size(); ++i) {
+    for(int i = 0; i < expression.size(); ++i) {
         char el = expression[i];
         switch(el) {
             case '{': case '(': case '[':
