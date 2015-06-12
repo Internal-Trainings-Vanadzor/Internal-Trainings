@@ -3,7 +3,9 @@
 
 void f (myClass h) {
     myClass a(new int(5));
+    myClass c(new int(5));
     myClass b(h);
+    b=a=c;
     b.set_ptr_value(777);
     std::cout << "Leaving function" << std::endl;
 }

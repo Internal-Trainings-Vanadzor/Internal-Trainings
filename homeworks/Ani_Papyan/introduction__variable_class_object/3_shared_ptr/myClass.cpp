@@ -18,6 +18,7 @@ myClass& myClass::operator=(myClass& object) {
     count = object.count;
     ptr = object.ptr;
     *count = *count + 1;
+    return *this;
 }
 myClass::~myClass () {
     *count = *count - 1;
