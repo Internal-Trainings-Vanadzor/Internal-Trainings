@@ -9,7 +9,7 @@ import java.util.Stack;
  * Created by Arman on 6/13/15.
  */
 public class BracketChecker {
-    //Stack bracketsStack = new Stack();
+
     Stack<Character> bracketsStack = new Stack<>();
 
     private JSONArray brackets = new JSONArray("[" +
