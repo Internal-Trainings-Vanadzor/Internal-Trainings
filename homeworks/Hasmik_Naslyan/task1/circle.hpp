@@ -5,6 +5,11 @@ class Circle {
         counter++;
         std::cout<<"The number of the objects is "<<counter<<"\n";
     }
+    
+    Circle (Circle& obj) {
+	++counter; 
+    }
+
     ~Circle(){
         counter--;
         std::cout<<"The number of the objects is "<<counter<<"\n";
