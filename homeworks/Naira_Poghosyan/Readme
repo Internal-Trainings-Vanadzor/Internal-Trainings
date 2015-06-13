@@ -1,0 +1,18 @@
+Այս ծրագիրը ստուգում է բացվող և փակվող փակագծերի հերթականությունը:
+
+Ծրագիրը աշխատեցնելու համար անհրաժեշտ է կատարել հետևյալ քայլերը․
+	g++ check_string_format.cpp -o check_brackets
+	./check_brackets
+
+Շնորհակալություն:
+========================================================
+
+This program validates the sequence of opening and closing brackets.
+
+You can run the program using the following commands.
+
+	g++ check_string_format.cpp -o check_brackets
+	./check_brackets
+
+Regards.
+========================================================
