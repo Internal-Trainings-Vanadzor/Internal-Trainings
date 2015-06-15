@@ -2,35 +2,36 @@
 #include <string>
 #include <stack>
 
+bool isOpen(char ch) {
+    return (ch == '(') || (ch == '[') || (ch == '{') ||(ch == '<');
+}
 
-//check if bracket is open returns 0,if close returns 1
-int checkBracket(char c)
-{
-    char brackets[] = { '{', '}', '[', ']', '(', ')', '<', '>' };
-    for (int i = 0; i < sizeof(brackets); ++i) {
-        if (c == brackets[i] && i % 2 != 0) {
-            return 1;
-        } else if (c == brackets[i] && i % 2 == 0) {
-            return 0;
-        }
-    }
-    return -1;
+bool isClose(char ch) {
+    return (ch == ')') || (ch == ']') || (ch == '}') ||(ch == '>');
+}
+
+bool isQuote(char ch) {
+    return (ch == '\'') || (ch == '"');
 }
 
 bool isPair(char a, char b) {
     return (a == '{' && b == '}') || (a == '[' && b == ']')
-        || (a == '(' && b == ')') || (a == '<' && b == '>');
+        || (a == '(' && b == ')') || (a == '<' && b == '>')
+        || (a == '\'' && b == '\'') || (a == '"' && b == '"');
 }
 bool isValidString(std::string s) 
 {
     std::stack<char> open_brackets;
-    
+    bool checkQuotes = true;
     for( int i = 0; i < s.size(); ++i )
     {
-        if( checkBracket(s[i]) == 0) {
+        if( isQuote(s[i]) ) {
+            checkQuotes = !checkQuotes;
+        }
+        if( isOpen(s[i]) || (isQuote(s[i]) && checkQuotes == false) ) {
             open_brackets.push(s[i]);
         } 
-        if( checkBracket(s[i]) == 1 ) {
+        if( isClose(s[i]) || (isQuote(s[i]) && checkQuotes == true) ) {
             if(open_brackets.empty()) {
                 return false;
             } else if( !isPair(open_brackets.top(), s[i]) ) {

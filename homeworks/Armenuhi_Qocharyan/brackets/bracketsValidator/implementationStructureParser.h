@@ -39,17 +39,17 @@ bool StructureParser::analyze(std::string  example) {
 		    return this->isCorrect;
 		}
 	        size_t openPosition =  example.find_last_of(mapOfSymbols["open"]);
-		std::string ex2 = example.substr(openPosition +1, example.length()-openPosition);
+		std::string partTow = example.substr(openPosition +1, example.length()-openPosition);
 	        if (openPosition > example.length()) {
 			break;
 		}
-		std::string a= example.substr(openPosition, example.length()-openPosition);
-		size_t closePosition =  a.find(mapOfSymbols["close"]) + openPosition; 
+		std::string partOne = example.substr(openPosition, example.length()-openPosition);
+		size_t closePosition =  partOne.find(mapOfSymbols["close"]) + openPosition; 
 	        if (openPosition < closePosition ){
 		    std::string s1 = example.substr(openPosition +1, closePosition - openPosition -1);
-		    std::string fierstPart =  example.substr(0,openPosition);
-		    std::string lastPart =  ex2.substr(ex2.find(mapOfSymbols["close"]) + 1,  ex2.length() - ex2.find(mapOfSymbols["close"]));
-		    std::string s2 = fierstPart + lastPart;
+		    std::string firstPart =  example.substr(0,openPosition);
+		    std::string lastPart =  partTow.substr(partTow.find(mapOfSymbols["close"]) + 1,  partTow.length() - partTow.find(mapOfSymbols["close"]));
+		    std::string s2 = firstPart + lastPart;
 		    StructureParser::analyze(s1);
 		    StructureParser::analyze(s2);
 	       } else  {
