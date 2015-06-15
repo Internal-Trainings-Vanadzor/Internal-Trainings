@@ -4,7 +4,7 @@
 
 using namespace std;
 
-bool isBracketsCorrect(char openedBracket, char closedBracket){	   
+static bool isBracketsCorrect(char openedBracket, char closedBracket){	   
     if ((openedBracket=='{' && closedBracket =='}') || 
             (openedBracket=='[' && closedBracket==']') ||
             (openedBracket=='"' && closedBracket=='"') ||
@@ -16,60 +16,63 @@ bool isBracketsCorrect(char openedBracket, char closedBracket){
     }
 }
 
-bool isOpened(char openedBracket){
-    if (openedBracket=='{'||openedBracket=='['||openedBracket=='(') {
-        return true;
-    } else {
-        return false;
+static bool isBracketsSequenceCorrect(string expression){
+    int expLength = expression.length();
+    stack<char> brackets;
+    bool isSingleApostrophe=false;
+    bool isDoubleApostrophe=false;
+    for (int i=0; i<expLength; i++){
+        char symbol = expression.at(i);
+        switch(symbol) {
+            case '{': case '(': case '[':
+                brackets.push(symbol);
+                break;
+            case '}': case ')': case ']':
+                if (brackets.empty() || !isBracketsCorrect(brackets.top(), symbol)) {
+                    return false;
+                }
+                brackets.pop();
+                break;
+            case '\'':
+                if (brackets.empty() || !isBracketsCorrect(brackets.top(), symbol)) {
+                    if (isSingleApostrophe) {
+                        return false;
+                    } else {
+                        brackets.push(symbol);
+                        isSingleApostrophe = true;
+                    }	
+                } else {
+                    brackets.pop();
+                    isSingleApostrophe = false;
+                }
+                break;	   
+            case '"':
+                if (brackets.empty() || !isBracketsCorrect(brackets.top(), symbol)) {
+                    if (isDoubleApostrophe) {
+                        return false;
+                    } else {
+                        brackets.push(symbol);
+                        isDoubleApostrophe = true;
+                    }
+                } else {
+                    brackets.pop();
+                    isDoubleApostrophe = false;
+                }
+                break;
+        }
     }
-}
-
-bool isClosed(char closedBracket){
-    if (closedBracket=='}'||closedBracket==']'||closedBracket==')') {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool isApostrophe(char isApostrophe){
-    if (isApostrophe=='"'||isApostrophe=='\'') {
-        return true;
-    } else {
-        return false;
-    }
+    return brackets.empty();
 }
 
 int main (){
-    static string  expression; // I am not sure that having static 
-    static bool isAvarenny = false;      // variable is preferable approach for these cases 	
-    int expLength, i=0; 
-    stack<char> brackets;
-
+    string  expression; 
     cout<<"Input an expression containing brackets: ";
     cin>>expression;
 
-    expLength = expression.length();
-
-    while (!isAvarenny && i<expLength)  {
-        char bufer = expression.at(i);
-        
-	if (isOpened(bufer)) {brackets.push(bufer);}
-	if (isApostrophe(bufer)){
-	 if ( brackets.empty() || !isBracketsCorrect(brackets.top(), bufer)){
-		brackets.push(bufer);
-	 }else {brackets.pop();}
-	}
-	if (isClosed(bufer)){
-                if(!brackets.empty() && isBracketsCorrect(brackets.top(), bufer)){brackets.pop();}
-		else{isAvarenny=true;}
-	}
-	i++;
+    if (isBracketsSequenceCorrect(expression)) {
+        cout<<"The order of the brackets is correct \n";
+    } else {
+        cout<<"The order of the brackets is incorrect \n" ;    
     }
-    if(isAvarenny || !brackets.empty()) {
-        cout<<"The order of the brackets is incorrect \n";
-    }else{
-       cout<<"The order of the brackets is correct \n" ;        
-    } 
     return 0;
 }
