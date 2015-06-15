@@ -15,25 +15,37 @@ private:
 public:
     bool check() {
         for(int i = 0; i < m_check_string.size(); ++i ) {
-            //std::cout << "m_check_string " << i << " " << m_check_string[i] << std::endl; 
             if (statment.find(m_check_string[i]) == std::string::npos) {
                 continue;
             }
             if(!isCorrectStatement(m_check_string[i])) {
-                std::cout << "The string is not valid from " << i << " position: " << m_check_string << std::endl;
+                std::cout << "The string is not valid from " << i 
+                    << " position: " << m_check_string << std::endl;
                 return false;
             }
         }
-        std::cout << "Congradulation :) The string is valid: " << m_check_string << std::endl;
+        if (!m_stack.empty()) {
+            std::cout << "The string is not valid: some open tags haven't "
+                << " close tags." << m_check_string << std::endl;
+            return false;
+        }
+        std::cout << "Congradulation :) The string is valid: " 
+            << m_check_string << std::endl;
+        return true;
     }
 
     bool isCorrectStatement(char sym) {
-        if(!m_convertor[sym]) {
+        std::map<char,char>::iterator it = m_convertor.find(sym);
+        if(it == m_convertor.end()) {
             m_stack.push_back(sym);
             return true;
         }
-        if (m_stack.back() != sym) {
-            if (('\'' == sym) || ('\"' == sym)) {
+        if (('\'' == sym) || ('\"' == sym)) {
+            if (m_stack.empty()) {
+                m_stack.push_back(sym);
+                return true;
+            }
+            if (m_stack.back() != sym) {
                 m_stack.push_back(sym);
                 return true;
             }
@@ -48,6 +60,7 @@ public:
 
     void setCheckingString(std::string str) {
         m_check_string = str;
+        m_stack.clear();
     }
 
     // Condtuctore
@@ -69,11 +82,21 @@ int main() {
     test.check();
     test.setCheckingString("\"\'{[(TUX)]}\'\"");
     test.check();
+    test.setCheckingString("\"a\"");
+    test.check();
+    test.setCheckingString("{\'\'}");
+    test.check();
 
     // negative test
     test.setCheckingString("{{{{[[}");
     test.check();
     test.setCheckingString("}{");
+    test.check();
+    test.setCheckingString("{}{");
+    test.check();
+    test.setCheckingString("\"");
+    test.check();
+    test.setCheckingString("{{{");
     test.check();
     return 0;
 }
