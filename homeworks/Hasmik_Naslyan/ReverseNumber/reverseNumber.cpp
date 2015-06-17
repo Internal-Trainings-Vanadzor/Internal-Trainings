@@ -1,25 +1,23 @@
 #include <iostream>
 
 static long int reverseNumber(int number){
-    static long int revNumber=0; 
-    revNumber = revNumber*10+number%10;   
-    if (number/10 == 0){
+    static long int revNumber=0;    
+    if (number == 0){
         return revNumber;
-    } else {	
-        reverseNumber(number/10);
     }
+    revNumber = revNumber*10+number%10;   
+    reverseNumber(number/10);
 }
 
 //The following case should be investigated
-/*
-static double reverseNumber(int number){
-    static double revNumber=0; 
-    revNumber = revNumber*10+number%10;   
-    if (number/10 == 0){
+/*static double reverseNumber(int number){
+    static double revNumber=0;    
+    if (number == 0){
         return revNumber;
-    } else {	
-        reverseNumber(number/10);
     }
+    revNumber = revNumber*10+number%10;   
+    reverseNumber(number/10);
+
 }
 */
 

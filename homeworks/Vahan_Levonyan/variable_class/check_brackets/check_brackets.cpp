@@ -22,16 +22,24 @@ bool isPair(char a, char b) {
 bool isValidString(std::string s) 
 {
     std::stack<char> open_brackets;
-    bool checkQuotes = true;
+    bool isOpenQuote = true;
     for( int i = 0; i < s.size(); ++i )
     {
         if( isQuote(s[i]) ) {
-            checkQuotes = !checkQuotes;
+            if(open_brackets.empty()) {
+                isOpenQuote = true;
+            }
+            else if(!isPair(open_brackets.top(), s[i])) {
+                isOpenQuote = true;
+            }
+            else {
+                isOpenQuote = false;
+            }
         }
-        if( isOpen(s[i]) || (isQuote(s[i]) && checkQuotes == false) ) {
+        if( isOpen(s[i]) || (isQuote(s[i]) && isOpenQuote == true) ) {
             open_brackets.push(s[i]);
         } 
-        if( isClose(s[i]) || (isQuote(s[i]) && checkQuotes == true) ) {
+        if( isClose(s[i]) || (isQuote(s[i]) && isOpenQuote == false) ) {
             if(open_brackets.empty()) {
                 return false;
             } else if( !isPair(open_brackets.top(), s[i]) ) {
@@ -57,11 +65,14 @@ int main()
         if (s[0] == '0') {
             break;
         }
+        else if (s[0] == '\0') {
+            std::cout << "Please input some string..." << std::endl;
+        }
 
-        if(isValidString(s)){
-            std::cout << "It's ok!" << std::endl;
+        else if(isValidString(s)){
+            std::cout << "It's ok!" << "\nTry again..." << std::endl;
         } else {
-            std::cout  << "Something is wrong!" << std::endl;
+            std::cout  << "Something is wrong!" << "\nTry again..." << std::endl;
         }
     }
 

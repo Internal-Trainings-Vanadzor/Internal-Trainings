@@ -4,53 +4,60 @@
 
 using namespace std;
 
+//Recursive function which reverses the specified numbers 
+void reverseNumberRecursive(int number)
+{
+    if(10 > number){
+        cout<<number;
+        return;
+    } else {
+        cout<<number%10;
+        reverseNumberRecursive(number/10);
+    }
+}
+
 //Reverses the specified numbers 
-void reverseNumbers(int numbers[], int size)
+void reverseDigits(int digits[], int size)
 {
     for (int i = 0; i < size/2; i++)
     {
-        int temp = numbers[i];
-        numbers[i] = numbers[size-1-i];
-        numbers[size-1-i] = temp; 
+        int temp = digits[i];
+        digits[i] = digits[size-1-i];
+        digits[size-1-i] = temp; 
     }
-    cout<<"Reveresed results: \n";
     for (int i = 0; i < size; i++)
     {
-        cout<<numbers[i]<<"\n";
+        cout<<digits[i];
     }
 }
 //Reverses the specified array of numbers using stack 
 void reverseNumbersUsingStack(int arr[], int size)
 {
-    stack<int> numbers;
+    stack<int> digits;
     for(int i = 0; i < size; i++)
     {
-        numbers.push(arr[i]);   
+        digits.push(arr[i]);   
     } 
     for(int i = 0; i < size; i++)
     {
-        arr[i] = numbers.top();   
-        numbers.pop();
+        arr[i] = digits.top();   
+        digits.pop();
     } 
-    cout<<"Reveresed results using stack: \n";
     for (int i = 0; i < size; i++)
     {
-        cout<<arr[i]<<"\n";
+        cout<<arr[i];
     }
 }
 
 int main()
 {
-    int size;
-    cout<<"Please enter the count of numbers:\n";
-    cin>>size;    
-    cout<<"Please enter the numbers:\n";
-    int numbers[size];
-    for (int i = 0; i < size; i++)
-    {
-        cin>>numbers[i];
-    }
-    reverseNumbers(numbers, size);
-    reverseNumbersUsingStack(numbers, size);
+    const int size = 5;
+    int digits[size] = {1,2,3,4,5};
+    cout<<"Reversed number using recursive function :\n";
+    reverseNumberRecursive(12345);
+    cout<<"\nReversed digits using loop:\n";
+    reverseDigits(digits, size);
+    cout<<"\nReversed digits using stack:\n";
+    reverseNumbersUsingStack(digits, size);
     return 0;
 }
