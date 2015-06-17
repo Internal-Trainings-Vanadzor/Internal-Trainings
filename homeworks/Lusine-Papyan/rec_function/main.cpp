@@ -1,20 +1,19 @@
 #include <iostream>
 
-void rec_function(int number) {
-	int tmp = 0;
-	tmp = number;
-	int arch = 0;
-	arch = number % 10;
-	tmp = (tmp - arch) / 10;
-	std::cout << arch;
-	if (tmp != 0) {
-		rec_function(tmp);
+int rec_function(int number) {
+	static int tmp = 0;
+	if (number == 0) {
+		return tmp;
 	}
+	tmp = tmp * 10 + number % 10;
+	return rec_function(number / 10);
 
 }
-
 int main() {
-	int a = 12345;
-	rec_function(a);
+	int var;
+	std::cin >> var;
+	std::cout << rec_function(var) << std::endl;
+	int c = 0;
+	std::cin >> c;
 	return 0;
 }
