@@ -18,6 +18,8 @@ bool are_correct_brackets (char left, char right) {
  */
 bool is_correct_expression (const std::string& expression) {
     std::stack<char> left;
+    bool single_quote_added = false;
+    bool double_quote_added = false;
     for(int i = 0; i < expression.size(); ++i) {
         char el = expression[i];
         switch(el) {
@@ -31,10 +33,22 @@ bool is_correct_expression (const std::string& expression) {
                 left.pop();
                 break;
              case '"': case '\'':
+                bool* checker;
+                if ('\'' == el) {
+                    checker = &single_quote_added;
+                } else {
+                    checker = &double_quote_added;
+                }
                 if (left.empty() || !are_correct_brackets(left.top(), el)) {
-                    left.push(el);
+                    if (*checker) {
+                        return false;
+                    } else {
+                        left.push(el);
+                        *checker = true;
+                    }
                 } else {
                     left.pop();
+                    *checker = false;
                 }
                 break;
         }
