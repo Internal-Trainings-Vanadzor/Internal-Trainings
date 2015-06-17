@@ -6,7 +6,7 @@ class my_shared_ptr
 {
 private:
 	int* m_memory;
-	static int m_count;
+	int* m_count;
 public:
 	//This is default constructor of my_shared_ptr class.
 	my_shared_ptr();
@@ -21,7 +21,7 @@ public:
 	~my_shared_ptr();
 
 	//This is member function of my_shared_ptr class,which returns count of the my_shared_ptr class objects.
-	static int use_count();
+	int use_count();
 
 	//This is member function of my_shared_ptr class,which returns the value of the m_memory pointer.
 	const int get_value()const;
