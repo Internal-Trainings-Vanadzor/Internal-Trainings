@@ -7,5 +7,5 @@ ObjectCounter::ObjectCounter() {
 }
 
 ObjectCounter::~ObjectCounter() {
-	--++s_object_counter;
+	--s_object_counter;
 };
