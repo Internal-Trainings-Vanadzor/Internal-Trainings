@@ -127,10 +127,6 @@ my_shared_ptr<T>::my_shared_ptr(const my_shared_ptr<T>& arg) {
     if (this == &arg) {
         return;
     }
-    // check my count and delete previous me
-    if (1 == *m_counter) {
-        delete m_pointer;
-    }
     // assign new value
     (*arg.m_counter)++;
     m_pointer = arg.m_pointer;
