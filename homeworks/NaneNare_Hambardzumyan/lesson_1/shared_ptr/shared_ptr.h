@@ -95,6 +95,7 @@ my_shared_ptr<T>& my_shared_ptr<T>::operator=(my_shared_ptr<T>& arg) {
     }
     // check my count and delete previous me
     if (1 == *m_counter) {
+        delete m_counter;
         delete m_pointer;
     }
     // assign new value
