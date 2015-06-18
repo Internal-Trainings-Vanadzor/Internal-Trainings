@@ -10,9 +10,6 @@ bool isClose(char ch) {
     return (ch == ')') || (ch == ']') || (ch == '}') ||(ch == '>');
 }
 
-bool isQuote(char ch) {
-    return (ch == '\'') || (ch == '"');
-}
 
 bool isPair(char a, char b) {
     return (a == '{' && b == '}') || (a == '[' && b == ']')
@@ -22,24 +19,25 @@ bool isPair(char a, char b) {
 bool isValidString(std::string s) 
 {
     std::stack<char> open_brackets;
-    bool isOpenQuote = true;
+    bool isOpenSingleQuote = false;
+    bool isOpenDoubleQuote = false;
+
     for( int i = 0; i < s.size(); ++i )
     {
-        if( isQuote(s[i]) ) {
-            if(open_brackets.empty()) {
-                isOpenQuote = true;
-            }
-            else if(!isPair(open_brackets.top(), s[i])) {
-                isOpenQuote = true;
-            }
-            else {
-                isOpenQuote = false;
-            }
+        if( s[i] == '\'' ) {
+            isOpenSingleQuote = !isOpenSingleQuote;
         }
-        if( isOpen(s[i]) || (isQuote(s[i]) && isOpenQuote == true) ) {
+        if( s[i] == '"' ) {
+            isOpenDoubleQuote = !isOpenDoubleQuote;
+        }
+        if( isOpen(s[i]) || 
+                (s[i] == '\'' && isOpenSingleQuote) || 
+                (s[i] == '"' && isOpenDoubleQuote) ) {
             open_brackets.push(s[i]);
         } 
-        if( isClose(s[i]) || (isQuote(s[i]) && isOpenQuote == false) ) {
+        if( isClose(s[i]) || 
+                (s[i] == '\'' && !isOpenSingleQuote) || 
+                (s[i] == '"' && !isOpenDoubleQuote) ) {
             if(open_brackets.empty()) {
                 return false;
             } else if( !isPair(open_brackets.top(), s[i]) ) {
@@ -66,7 +64,7 @@ int main()
             break;
         }
         else if (s[0] == '\0') {
-            std::cout << "Please input some string..." << std::endl;
+            std::cout << "Please input some string or press 0 to quit..." << std::endl;
         }
 
         else if(isValidString(s)){
