@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 static int reverseNumber(int number)
