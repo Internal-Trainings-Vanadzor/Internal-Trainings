@@ -5,13 +5,12 @@
 /**
  * Removes the single line comments from the "code" file and saves the output in "output" file
  *
- * TODO: Pass input and output files names as parameters
  * TODO: Do not remove the single line comment if it is contained in a multiple-line comment
  */
-static void remove_single_line_comments (std::string comment_str_start) {
+static void remove_comments (const char* input_file, const char* output_file, std::string comment_str_start) {
     std::string line;
-    std::ifstream myfile ("code");
-    std::ofstream output ("output_single");
+    std::ifstream myfile (input_file);
+    std::ofstream output (output_file);
     if (myfile.is_open()) {
         while (getline (myfile,line)) {
             int brackets_count = 0;
@@ -47,13 +46,12 @@ static void remove_single_line_comments (std::string comment_str_start) {
 /**
  * Removes the multiple-line comments from the "code" file and saves the output in "output" file
  *
- * TODO: Pass input and output files names as parameters
  * TODO: Do not remove the multiple line comment if it is contained in a single-line comment
  */
-static void remove_multiple_line_comments (std::string comment_str_start, std::string comment_str_end) {
+static void remove_comments (const char* input_file, const char* output_file, std::string comment_str_start, std::string comment_str_end) {
     std::string line;
-    std::ifstream myfile ("code");
-    std::ofstream output ("output_multiple");
+    std::ifstream myfile (input_file);
+    std::ofstream output (output_file);
     if (myfile.is_open()) {
         bool comment_started = false;
         int brackets_count = 0;
@@ -104,7 +102,7 @@ static void remove_multiple_line_comments (std::string comment_str_start, std::s
     return;
 }
 int main () {
-    remove_single_line_comments("//");
-    remove_multiple_line_comments("/*", "*/");
+    remove_comments("code", "output_single", "//");
+    remove_comments("output_single", "output", "/*", "*/");
     return 0;
 }
