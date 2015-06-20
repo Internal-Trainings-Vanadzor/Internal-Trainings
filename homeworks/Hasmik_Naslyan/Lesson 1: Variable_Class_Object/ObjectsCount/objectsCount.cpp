@@ -1,8 +1,20 @@
-#include <iostream>
-#include "circle.hpp"
+#include "objectsCount.hpp"
 
-int Circle::counter=0;
-int main (){
-    Circle a, b, c;
-    return 0;
+int objectsCount::counter (0);
+
+objectsCount::objectsCount () {
+   counter++; 
 }
+
+objectsCount::objectsCount (objectsCount& object) {
+    counter++;
+}
+
+objectsCount::~objectsCount () {
+     counter--;
+}
+
+int objectsCount::getObjectsCount () {
+    return counter;
+}
+
