@@ -7,6 +7,7 @@ const int NUMBER_OF_SAME_BRACKET_TYPES = 2;
 char leftBrackets[NUMBER_OF_BRACKET_TYPES] = {'{','[','<'};
 char rightBrackets[NUMBER_OF_BRACKET_TYPES] = {'}',']','>'};
 char sameBrackets[NUMBER_OF_SAME_BRACKET_TYPES] = {'"','\''};
+bool foundSameBrackets[NUMBER_OF_SAME_BRACKET_TYPES] = {false, false}; 
 
 BracketsChecker::BracketsChecker(){
 }
@@ -50,13 +51,18 @@ bool BracketsChecker::isCorrectPairs(stack<char> &foundLeftBracketsStack, char r
     }
 }
 
-void BracketsChecker::checkSamePairs(stack<char> &foundLeftBracketsStack, char bracket){
-    if( foundLeftBracketsStack.empty() || (foundLeftBracketsStack.top() != bracket)){
-        foundLeftBracketsStack.push(bracket);
+bool BracketsChecker::checkSamePairs(stack<char> &foundLeftBracketsStack, char bracket, int foundIndex){
+    if (foundSameBrackets[foundIndex]){
+        if( foundLeftBracketsStack.empty() || (foundLeftBracketsStack.top() != bracket)){
+            return false;
+        }else{
+             foundLeftBracketsStack.pop();
+        }
     }else{
-        foundLeftBracketsStack.pop();
+        foundSameBrackets[foundIndex]=true;
+        foundLeftBracketsStack.push(bracket);
     }
-
+    return true;
 }
 
 bool BracketsChecker::isSequenceOfBracketsCorrect(const std::string& text){
@@ -73,7 +79,10 @@ bool BracketsChecker::isSequenceOfBracketsCorrect(const std::string& text){
             }else{
                 int foundIndex = getSameBracketIndex(text[i]);
                 if(foundIndex != -1){
-                    checkSamePairs(foundLeftBracketsStack, text[i]);
+                    if(!checkSamePairs(foundLeftBracketsStack, text[i], foundIndex)){
+                        cout<<"[Info] Found same brackets are not correct\n";
+                        return false;
+                    }
                 }
             }
         }

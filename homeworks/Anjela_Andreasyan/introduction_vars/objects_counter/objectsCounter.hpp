@@ -6,7 +6,7 @@
 
 class Counter{
     private:
-            static int m_objects_count;
+            static unsigned int m_objects_count;
 
     public:
         Counter();
@@ -15,7 +15,7 @@ class Counter{
         
         ~Counter();
 
-        int getObjectsCount();
+        static unsigned int getObjectsCount();
 
 };
 #endif
