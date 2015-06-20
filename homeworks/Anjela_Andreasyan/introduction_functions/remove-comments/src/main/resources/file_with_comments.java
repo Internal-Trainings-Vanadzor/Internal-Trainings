@@ -32,6 +32,7 @@ public class AppTest
         Test
         suite()
         {
+            System.out.println("/* another not a comment");
             return
                 new
                 TestSuite(

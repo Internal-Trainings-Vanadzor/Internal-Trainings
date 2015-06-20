@@ -30,7 +30,6 @@ public class CleanComments {
 			}
 		}
 		return line;
-
 	}
 
 	private static String removeLineComment(String line, String commentSymbol) {
@@ -115,14 +114,14 @@ public class CleanComments {
 		if (line.contains(endCommentSymbol)) {
 			isStartBlockCommentFound = false;
 			int endBlockIndex = line.indexOf(endCommentSymbol);
-			String tempLine = line.substring(endBlockIndex
-					+ endCommentSymbol.length());
-			if (line.length() > endBlockIndex + endCommentSymbol.length()) {
+			int nextIndex = endBlockIndex + endCommentSymbol.length() + 1;
+			if (line.length() > nextIndex) {
+				String tempLine = line.substring(nextIndex);
 				line = tempLine
-						+ removeBlockComments(
-								line.substring(endBlockIndex
-										+ endCommentSymbol.length()),
+						+ removeBlockComments(line.substring(nextIndex),
 								startCommentSymbol, endCommentSymbol);
+			} else {
+				line = "";
 			}
 		} else {
 			line = "";
@@ -142,10 +141,14 @@ public class CleanComments {
 
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-				line = removeLineComments(line, lineComment);
-				line = removeBlockComments(line, startCommentSymbol,
-						endCommentSymbol);
-				result.append(line).append("\n");
+				if (!line.isEmpty()) {
+					line = removeLineComments(line, lineComment);
+					line = removeBlockComments(line, startCommentSymbol,
+							endCommentSymbol);
+					if (!line.isEmpty()) {
+						result.append(line).append("\n");
+					}
+				}
 			}
 			scanner.close();
 
