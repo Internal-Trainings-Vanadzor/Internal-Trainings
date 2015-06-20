@@ -19,6 +19,25 @@ size_t found=line.find('\"');
 	return line;
 }
 
+static string removeLineComment(string line){
+	string tempLine;  size_t index; size_t blockCommentInLine=line.find("/*");
+	tempLine = removeTextInQuotes(line);
+		if (blockCommentInLine!=string::npos){
+			while(tempLine.find("/*") != string::npos) {cout<<"while";
+
+				tempLine.erase(tempLine.find("/*"),2); tempLine.erase(tempLine.find("*/"),2);
+				index = line.find("/*");
+        	         	line.erase(index, (line.find("*/", index) - index)+2);
+			}
+		}
+		tempLine = removeTextInQuotes(line);
+		index=tempLine.find("//");
+		if (index!=string::npos){					
+			line = line.erase(index, line.find("\n", index) - index);
+		}
+return line;	
+}
+
 int main(){
 
 	vector<string> lines;	
@@ -29,21 +48,14 @@ int main(){
     
 	while (getline(file, line))
 	{
-		size_t found=line.find("//");
-		if (found!=string::npos){
-			if (found!=0){
-				string tempLine = removeTextInQuotes(line);
-				size_t index=tempLine.find("//");
-				if (index!=std::string::npos){
-					
-				line = line.erase(index, line.find("\n", index) - index);
-				}
+		size_t lineComment=line.find("//");		
+		if (lineComment!=string::npos){
+			if (lineComment!=0){	
+				line = removeLineComment(line);
 				lines.push_back(line);
 				
-			} 			
-		} else {
-			lines.push_back(line);
-		}
+			} 
+		}else {lines.push_back(line);}
 	}
 
 	file.close();
