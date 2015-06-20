@@ -17,6 +17,7 @@ int main(){
         cout<<"[Info] In this scope the count of objects is: "<<a5.getObjectsCount()<<"\n";
     }
     cout<<"[Info] After the scope the count of objects is: "<<a2.getObjectsCount()<<"\n";
+    cout<<"[Info] After the scope the count of objects is: "<<Counter::getObjectsCount()<<"\n";
     return 0;
 }
 
