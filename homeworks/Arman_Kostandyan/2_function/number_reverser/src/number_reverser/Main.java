@@ -1,4 +1,4 @@
-package digital_reverser;
+package number_reverser;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		Reverser reverser = new Reverser();
 
-		System.out.print("Enter an integer digit: ");
+		System.out.print("Enter an integer number: ");
 		
 		int num = in.nextInt();
 		int reversedNum = reverser.reverse(num);
