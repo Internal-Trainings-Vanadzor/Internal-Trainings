@@ -10,7 +10,7 @@ public class App {
 		CleanComments clearer = new CleanComments();
 		String clearedText = clearer.readFileAndClearComments("file_with_comments.java", "//", "/*",
 				"*/");
-		System.out.println("Read text " + clearedText);
+		System.out.println("Read and cleared text " + clearedText);
 		clearer.writeClearedTextInFile("file_without_comments.java", clearedText);
 	}
 
