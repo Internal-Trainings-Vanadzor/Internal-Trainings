@@ -1,0 +1,18 @@
+Begin
+some text.... 
+more text.... 
+//some commentes text 1
+/*
+some commented text inside blocked comment
+*/
+//some commentes text 1
+some text.... 
+more text.... 
+/*some commented text inside blocked comment
+again some text 
+the last line of the text*/
+text text text
+//some commentes text 2
+/*some commented text inside blocked comment
+*/
+End.

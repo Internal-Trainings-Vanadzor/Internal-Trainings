@@ -2,10 +2,10 @@
 #include <iostream>
 #include "objectsCounter.hpp"
 
-int Counter::m_objects_count(0);
+unsigned int Counter::m_objects_count(0);
 
 Counter::Counter(){
-    int maxIntVal = std::numeric_limits<int>::max();
+    unsigned int maxIntVal = std::numeric_limits<unsigned int>::max();
     if (m_objects_count< maxIntVal){
         ++m_objects_count;
     }else{
@@ -26,7 +26,7 @@ Counter::~Counter(){
     --m_objects_count;
 }
 
-int Counter::getObjectsCount(){
+unsigned int Counter::getObjectsCount(){
     return m_objects_count;
 }
 

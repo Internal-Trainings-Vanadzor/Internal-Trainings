@@ -16,8 +16,10 @@ template < typename T > class auto_ptr
         }
 
         auto_ptr<T>& operator = (auto_ptr<T>& autoP){
+            if (this != &autoP){
             m_ptr=autoP.m_ptr;
             autoP.m_ptr=NULL;
+            }
             return *this;
         }
         ~auto_ptr(){

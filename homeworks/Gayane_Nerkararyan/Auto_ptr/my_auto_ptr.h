@@ -7,6 +7,9 @@ class my_auto_ptr
 private:
 	int* m_memory;
 public:
+	//This is default constructor of the my_auto_ptr class.
+	my_auto_ptr();
+
 	//This is constructor of the my_auto_ptr class.
 	my_auto_ptr(int*);
 
