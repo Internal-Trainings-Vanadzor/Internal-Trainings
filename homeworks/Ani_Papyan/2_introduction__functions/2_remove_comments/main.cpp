@@ -48,7 +48,7 @@ static void remove_single_line_comments (std::string comment_str_start) {
  * Removes the multiple-line comments from the "code" file and saves the output in "output" file
  *
  * TODO: Pass input and output files names as parameters
-    * TODO: Cover the case when the comment is opened and closed in the same line, e.g.  some code <comment>  some code
+ * TODO: Do not remove the multiple line comment if it is contained in a single-line comment
  */
 static void remove_multiple_line_comments (std::string comment_str_start, std::string comment_str_end) {
     std::string line;
@@ -69,9 +69,15 @@ static void remove_multiple_line_comments (std::string comment_str_start, std::s
                         ++i;
                     }
                     if (0 == brackets_count % 2) {
-                        line.replace(index, std::string::npos, "");
-                        comment_started = true;
-                        break;
+                        std::string::size_type index_end = line.find(comment_str_end, index + 2);
+                        if (index_end != std::string::npos) {
+                            line.replace(index, index_end + 2 - index, "");
+                            index = line.find(comment_str_start, i);
+                        } else {
+                            line.replace(index, std::string::npos, "");
+                            comment_started = true;
+                            break;
+                        }
                     } else {
                         i += 2;
                         index = line.find(comment_str_start, i);
