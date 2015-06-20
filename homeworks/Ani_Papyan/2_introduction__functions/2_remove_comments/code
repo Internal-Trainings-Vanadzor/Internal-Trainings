@@ -5,10 +5,13 @@
 /**
  * This function reverses the given integer
  */
-static void remove_single_line_comments (std::string comment_str_start) {
+static /*comment 1*//**/void remove_single_line_comments /* inside comment */ (std::string comment_str_start) { /*lalala
+dffdgfd
+gdfgd
+end */ start again
     std::string line;
             while(index != std::string::npos) {
-                std::cout << "index:" << index << std::endl;
+                std::cout << "/*index:" << index << std::endl;
                 for (; i < index; ++i) {
                     if ('"' == line[i] && (0 == i || '\\' != line[i-1])) {
                         ++brackets_count;
@@ -26,7 +29,10 @@ static void remove_single_line_comments (std::string comment_str_start) {
             line.replace(line.find("//", 0),std::string::npos,"//!!!"); //Hello // a
             //std::cout << "Number: " << line << std::endl;
             //std::cout << "Number: " << line.substr(3,std::string::npos) << std::endl;
-            std::cout << line << '\n';
+            std::cout << line << '\n'; code... /* lalala
+            lalala
+            lalala
+            lalal*/ code again
             output << line << std::endl;
         }
 int main () {
