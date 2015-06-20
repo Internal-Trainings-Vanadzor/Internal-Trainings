@@ -1,7 +1,7 @@
 #include <iostream>
 
-static double reverseNumber(int number){
-    static double revNumber=0;    
+static long int reverseNumber(int number){
+    static long int revNumber=0;    
     if (number == 0){
         return revNumber;
     }
@@ -22,7 +22,7 @@ static double reverseNumber(int number){
 */
 
 int main(){
-    int number; double reversedNumber;
+    int number; long int reversedNumber;
 
     std::cout<<"Input a number greater than 10 and less than 987654321: ";
     std::cin>>number;
