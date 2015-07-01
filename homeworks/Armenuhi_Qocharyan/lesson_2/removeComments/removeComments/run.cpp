@@ -48,10 +48,9 @@ void remove(std::string fileName, std::string symbolLine, std::string startSymbo
 		   lineCode += line;
 		   line = "";
 		} else {
-
-	                if (positionStartString < positionSymbolLine && positionStartString < positionSymbolBlock && positionStartString != std::string::npos){ 
+	                if ((positionStartString < positionSymbolLine || positionSymbolLine ==  std::string::npos) && (positionStartString < positionSymbolBlock || positionStartString == std::string::npos) && positionStartString != std::string::npos) {
 	                    size_t positionEndString = line.substr(positionStartString + 1, line.length()).find("\"");
-	                    if ((positionEndString > positionSymbolLine ||  positionSymbolLine == std::string::npos) && (positionEndString > positionSymbolBlock || positionSymbolBlock == std::string::npos)){
+	                    if (positionEndString != std::string::npos) {
 	                        lineCode += line.substr(0, positionEndString + positionStartString + 2);
 	            	        line = line.substr(positionEndString + positionStartString + 2, line.length() - -positionEndString - positionStartString - 2);
 	                } 
@@ -64,7 +63,7 @@ void remove(std::string fileName, std::string symbolLine, std::string startSymbo
 	            positionSymbolLine = lineCode.find(startSymbolBlock);
                     if (positionSymbolBlock != std::string::npos && !inBlock) {
 			lineCode += line.substr(0, positionSymbolBlock);
-			line = (positionSymbolBlock + startSymbolBlock.length(), line.length() - positionSymbolBlock - startSymbolBlock.length());
+			line = line.substr(positionSymbolBlock + startSymbolBlock.length(), line.length() - positionSymbolBlock - startSymbolBlock.length());
                         inBlock = true;
 	            }
 		   }
