@@ -13,7 +13,7 @@ int reversNumber (int number) {
 	revers_number = 0;
 	return final_number;
     } else {
-	reversNumber(number / 10);
+	return reversNumber(number / 10);
     }
 }
 
