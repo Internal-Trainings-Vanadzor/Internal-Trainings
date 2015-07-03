@@ -50,6 +50,7 @@ public class AppTest
         testApp()
         {
             System.out.println("// not a comment");
+            System.out.println("\"/* another string with a quote in it");
             assertTrue(
                     true
                     );

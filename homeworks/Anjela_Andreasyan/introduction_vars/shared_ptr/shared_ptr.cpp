@@ -57,7 +57,9 @@ template < typename T > class shared_ptr
         }
         void reset(T* val){
             if(m_ptr){
-                *refCount=1; // TODO check / test this function
+                if(1==*refCount){
+                    delete m_ptr;
+                }
                 m_ptr=val;
             }
         }
