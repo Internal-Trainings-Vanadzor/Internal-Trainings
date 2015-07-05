@@ -4,7 +4,7 @@
 
 //TBD Investigate google tests' running mechanism and add new test cases
 
-TEST(analyze, positive) {
+TEST(analyze, Positive_1) {
     StructureParser parser = StructureParser();
     std::string myString = "aaa{b}bb";
     bool t = parser.analyze(myString);
@@ -12,13 +12,63 @@ TEST(analyze, positive) {
 
 }
 
-TEST(analyze, Negative) {
+TEST(analyze, Positive_2) {
+    StructureParser parser = StructureParser();
+    std::string myString = "aaa'{b}'bb";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(1, t);
+
+}
+
+TEST(analyze, Positive_3) {
+    StructureParser parser = StructureParser();
+    std::string myString = "aaa'{b}'bb";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(1, t);
+
+}
+
+TEST(analyze, Positive_4) {
+    StructureParser parser = StructureParser();
+    std::string myString = "";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(1, t);
+
+}
+
+TEST(analyze, Positive_5) {
+    StructureParser parser = StructureParser();
+    std::string myString = "{}[]''";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(1, t);
+
+}
+TEST(analyze, Negative_1) {
     StructureParser parser = StructureParser();
     std::string myString = "aaa{bbb";
     bool t = parser.analyze(myString);
     EXPECT_EQ(0, t);
 
 }
+
+
+TEST(analyze, Negative_2) {
+    StructureParser parser = StructureParser();
+    std::string myString = "aaa'{'b}bb";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(0, t);
+
+}
+
+
+TEST(analyze, Negative_3) {
+    StructureParser parser = StructureParser();
+    std::string myString = "aaa[{b]}bb";
+    bool t = parser.analyze(myString);
+    EXPECT_EQ(0, t);
+
+}
+
 
 
 int main(int argc, char **argv) {
