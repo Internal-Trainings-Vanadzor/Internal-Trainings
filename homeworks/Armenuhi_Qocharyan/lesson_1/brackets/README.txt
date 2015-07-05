@@ -41,4 +41,7 @@ ENVIRONMENT:
 
   
 	
-
+build gtest
+	 g++ -I /usr/include structureParserUnittest.cc implementationStructureParser.cpp /usr/lib/libgtest_main.a -lgtest -lpthread -o mytest -std=c++11
+run gtest
+	./mytest

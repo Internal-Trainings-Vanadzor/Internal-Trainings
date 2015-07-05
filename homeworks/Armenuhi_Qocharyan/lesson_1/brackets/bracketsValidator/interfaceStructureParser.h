@@ -1,3 +1,5 @@
+#ifndef Brackets
+#define Brackets
 #include <iostream>
 #include <string>
 #include <map>
@@ -16,3 +18,5 @@ class StructureParser {
 	
 };
 
+
+#endif
