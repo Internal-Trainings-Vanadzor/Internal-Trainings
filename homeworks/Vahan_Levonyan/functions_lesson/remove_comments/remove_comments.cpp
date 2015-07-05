@@ -1,47 +1,81 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <string>
-#include <limits>
-bool isLineComment(std::vector<char> vect) {
+
+
+bool isOpenLineComment(std::vector<char> vect) {
     return (vect[0] == '/') && (vect[1] == '/');
 }
 
-bool isBlockComment(std::vector<char> vect) {
+bool isOpenBlockComment(std::vector<char> vect) {
     return (vect[0] == '/') && (vect[1] == '*');
+}
+
+bool isLineComment(std::vector<char> vect) {
+    return( (vect[0] == '/') && (vect[1] == '/') && (vect.back() == '\n') );
+}
+
+bool isBlockComment(std::vector<char> vect) {
+    return ( (vect[0] == '/') && (vect[1] == '*') &&
+            (vect[vect.size() - 1] == '/') && (vect[vect.size() - 2] == '*') );
 }
 
 
 int main()
 {
-    std::ifstream fin;
-    fin.open("code_with_comments.txt", std::ios::in);
-
+    std::ifstream inputFile;
+    std::ofstream noCommentFile;
+    std::ofstream commentFile;
+    
+    inputFile.open ("code_with_comments.txt", std::ios::in | std::ios::binary);
+    commentFile.open ("comments.txt", std::ios::out | std::ios::trunc | std::ios::binary);
+    noCommentFile.open ("no_comments.txt", std::ios::out | std::ios::trunc | std::ios::binary);
     char ch;
-    std::vector<char> comment;
-    std::string close_block = "*/";
+    std::vector<char> fragment;
+    if (inputFile.is_open()) {
+        while(!inputFile.eof())
+        {
+            inputFile.get(ch);
+            fragment.push_back(ch);
 
+            if( isBlockComment(fragment) ){
+                char* buffer = new char[fragment.size()];
+                inputFile.seekg (-fragment.size(), inputFile.cur);
+                inputFile.read (buffer,fragment.size());
+                commentFile.write (buffer,fragment.size());
+                delete[] buffer;
+                fragment.clear();
+            }
 
-    while(!fin.eof())
-    {
-        fin.get(ch);
-        comment.push_back(ch);
-        if(ch != '/' && ch != '*'){
-            comment.pop_back();      
-        } else if(isBlockComment(comment)){
-            std::cout << "block comment" << std::endl;
-            comment.erase (comment.begin(), comment.begin()+2);
-          //  std::cin.ignore(256, std::stoi(close_block);
-        } else if(isLineComment(comment)){
-            std::cout << "line comment" << std::endl;
-            comment.erase (comment.begin(), comment.begin()+2);
-            //fin.putback(ch);
-            fin.ignore(/*std::numeric_limits<std::streamsize>::max()*/256, '\n');
-            fin.get(ch);
+            else if( isLineComment(fragment) ){
+                char* buffer = new char[fragment.size()];
+                inputFile.seekg (-fragment.size(), inputFile.cur);
+                inputFile.read (buffer,fragment.size());
+                commentFile.write (buffer,fragment.size());
+                delete[] buffer;
+                fragment.clear();
+            }
+            else if( (!isOpenLineComment(fragment)) && (!isOpenBlockComment(fragment))
+                    && (ch != '/') && (ch != '*') && (ch != '\n') ){
+                char* buffer = new char[fragment.size()];
+                inputFile.seekg (-fragment.size(), inputFile.cur);
+                inputFile.read (buffer,fragment.size());
+                noCommentFile.write (buffer,fragment.size());
+                delete[] buffer;
+                fragment.clear();
+            }
+            else {
+                std::cout << "test";
+            }
+
         }
-        std::cout << ch;
+    }
+    else {
+        std::cout <<"Unable to open the file...";
     }
 
-
+    commentFile.close();
+    noCommentFile.close();
+    inputFile.close();
     return 0;
 }

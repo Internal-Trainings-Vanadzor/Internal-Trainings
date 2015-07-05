@@ -1,18 +1,22 @@
-jasdkcjsdkcjbkjc
-//kjsdkjcbksdjbckscs cmns cmcm 
-s.dncsdcksdkdjbckjcb 
-/*kjsdkcksjdbckjsbkjbkdj
-smdc,sd c s,mcd ,smc ,cmds
-skdncsdkjcksjd
-lkndc,s,dm
-*/
-//In linguistics, the topic, or theme, of a sentence is what is being talked about, and the comment
-(rheme or focus) is what is being said about the topic. That the information structure of a clause is divided in this way is generally agreed on, but the boundary between topic/theme depends on grammatical theory.
-The difference between "topic" and grammatical subject is that topic is used to describe the information structure, or pragmatic structure of a clause and how it coheres with other clauses, whereas the subject is a purely grammatical category. For example it is possible to have clauses where the subject is not the topic, such as in passive voice. In some languages, word order and other syntactic phenomena are determined largely by the topic–comment (theme–rheme) structure. These languages are sometimes referred to as topic-prominent languages. Chinese and Japanese are often given as examples of this.
-/*kjsdkcksjdbckjsbkjbkdj
-smdc,sd c s,mcd ,smc ,cmds
-skdncsdkjcksjd
-lkndc,s,dm
-*/
-In the Prague school, the dichotomy, termed topic–focus articulation, has been studied mainly by Vilém Mathesius, Jan Firbas, František Daneš, Petr Sgall and Eva Hajičová. They have been concerned mainly by its relation to intonation and word-order. The work of Michael Halliday in the 1960s is responsible for developing linguistic science through his systemic functional linguistics model for English (see e.g. Halliday 1967–68, 1970)
-//In some categorizations, topic refers only to the contrastive theme and comment to the noncontrastive theme + rheme.
+// comments in C/C++, using /* */ or //
+#include <iostream>
+ 
+ int main(void)
+ {
+     /* this is a comment
+     and it extends until the closing
+     star-slash comment mark */
+      
+      std::cout<<"Hello World! How are you?\n";
+       
+       // this comment ends at the end of the line so, new comment line need new double forward slash
+        
+        std::cout<<"That is the comment in C/C++ program!\n";
+        std::cout<<"They are ignored by compiler!\n";
+         
+         // double forward slash comments can be alone on a line
+         /* so can slash-star comments */
+         /********************************/
+          
+          return 0;
+ }
