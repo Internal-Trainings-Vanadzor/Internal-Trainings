@@ -3,24 +3,29 @@
 #include <vector>
 
 
-bool isOpenLineComment(std::vector<char> vect) {
-    return (vect[0] == '/') && (vect[1] == '/');
+bool isOpenComment(const std::vector<char>& vect) {
+    return ( (vect[0] == '/') && (vect[1] == '/') ) ||
+           ( (vect[0] == '/') && (vect[1] == '*') );
 }
 
-bool isOpenBlockComment(std::vector<char> vect) {
-    return (vect[0] == '/') && (vect[1] == '*');
-}
 
-bool isLineComment(std::vector<char> vect) {
+bool isLineComment(const std::vector<char>& vect) {
     return( (vect[0] == '/') && (vect[1] == '/') && (vect.back() == '\n') );
 }
 
-bool isBlockComment(std::vector<char> vect) {
+bool isBlockComment(const std::vector<char>& vect) {
     return ( (vect[0] == '/') && (vect[1] == '*') &&
             (vect[vect.size() - 1] == '/') && (vect[vect.size() - 2] == '*') );
 }
 
-
+void writeToFile(std::vector<char>& content, std::ifstream& infile, std::ofstream& outfile) {
+    char* buffer = new char[content.size()];
+    infile.seekg (-content.size(), infile.cur);
+    infile.read (buffer,content.size());
+    outfile.write (buffer,content.size());
+    delete[] buffer;
+    content.clear();
+}
 int main()
 {
     std::ifstream inputFile;
@@ -38,36 +43,19 @@ int main()
             inputFile.get(ch);
             fragment.push_back(ch);
 
-            if( isBlockComment(fragment) ){
-                char* buffer = new char[fragment.size()];
-                inputFile.seekg (-fragment.size(), inputFile.cur);
-                inputFile.read (buffer,fragment.size());
-                commentFile.write (buffer,fragment.size());
-                delete[] buffer;
-                fragment.clear();
+            if( isBlockComment(fragment) || isLineComment(fragment)) {
+                writeToFile(fragment, inputFile, commentFile);
             }
 
-            else if( isLineComment(fragment) ){
-                char* buffer = new char[fragment.size()];
-                inputFile.seekg (-fragment.size(), inputFile.cur);
-                inputFile.read (buffer,fragment.size());
-                commentFile.write (buffer,fragment.size());
-                delete[] buffer;
-                fragment.clear();
-            }
-            else if( (!isOpenLineComment(fragment)) && (!isOpenBlockComment(fragment))
-                    && (ch != '/') && (ch != '*') && (ch != '\n') ){
-                char* buffer = new char[fragment.size()];
-                inputFile.seekg (-fragment.size(), inputFile.cur);
-                inputFile.read (buffer,fragment.size());
-                noCommentFile.write (buffer,fragment.size());
-                delete[] buffer;
-                fragment.clear();
+            else if( (!isOpenComment(fragment)) && 
+                    (ch != '/') && 
+                    (ch != '*') && 
+                    (ch != '\n') ) {
+                writeToFile(fragment, inputFile, noCommentFile);
             }
             else {
-                std::cout << "test";
+                continue;
             }
-
         }
     }
     else {
