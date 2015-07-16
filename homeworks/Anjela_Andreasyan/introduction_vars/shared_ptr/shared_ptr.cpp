@@ -1,21 +1,30 @@
 #include <iostream>
+#include <limits>
 
 template < typename T > class shared_ptr
 {
     private:
         T* m_ptr;
-        int* refCount;
+        unsigned int* refCount;
+        void increaseRefCount(){
+            unsigned int maxIntVal = std::numeric_limits<unsigned int>::max();
+            if (*refCount < maxIntVal){
+                ++(*refCount);
+            }else{
+                std::cout<<"[Warning] The number of the shared pointers is greater than the max int number: " + maxIntVal;
+            }
+        }
 
     public:
         shared_ptr(T* val=0){
             m_ptr=val;
-            refCount = new int (1); 
+            refCount = new unsigned int (1); 
         }
 
         shared_ptr(const shared_ptr<T>& sharedP){ 
             m_ptr=sharedP.m_ptr;
             refCount = sharedP.refCount;
-            ++(*refCount);
+            increaseRefCount();
         }
 
         shared_ptr<T>& operator= (shared_ptr<T>& sharedP){
@@ -23,7 +32,7 @@ template < typename T > class shared_ptr
                 this->~shared_ptr();
                 m_ptr=sharedP.m_ptr;
                 refCount = sharedP.refCount;
-                ++(*refCount);
+                increaseRefCount();
             }
             return *this;
         }
@@ -48,12 +57,20 @@ template < typename T > class shared_ptr
         }
         void reset(T* val){
             if(m_ptr){
+                if(1==*refCount){
+                    delete m_ptr;
+                }
                 m_ptr=val;
             }
         }
 
         void release(){
-            --(*refCount);
+            if(*refCount > 0){
+                --(*refCount);
+            }else{
+                std::cout<<"[Warning] The number of the shared pointers is already 0";
+                m_ptr=NULL;
+            }
         }
 };
 

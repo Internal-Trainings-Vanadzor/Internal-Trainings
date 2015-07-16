@@ -17,7 +17,7 @@ class BracketsChecker{
         int getSameBracketIndex(char textEl);
         bool isCorrectRight(char leftBracket, char rightBracket);
         bool isCorrectPairs(stack<char> &foundLeftBracketsStack, char rightBracket);
-        void checkSamePairs(stack<char> &foundLeftBracketsStack, char bracket);
+        bool checkSamePairs(stack<char> &foundLeftBracketsStack, char bracket, int foundIndex);
     public:
         bool isSequenceOfBracketsCorrect(const std::string& text);
         BracketsChecker();

@@ -1,40 +1,62 @@
 #include <iostream>
-#include "string.h"
+#include <string>
+#include <stack>
 
 using namespace std;
-//Checks if the specific expression contains valid sequence of brackets.
-bool checkBrackets(string expression)
+
+// function checks if opening  bracket corresponds to the closing one
+bool checkIfBracketsArePair(char opening, char closing)
 {
-    char brackets[] = {'{', '}','[', ']', '(', ')'};
-    bool isValidSequence = true;
-    for(int j = 0; j < 3; j++){
-        int openingBracketsCount = 0;
-        int closingBracketsCount = 0;
-        for(int i = 0; i < expression.length(); i++)
-        {
-            if(expression.at(i) == brackets[j*2]){
-                openingBracketsCount++;
-            }
-            if(expression.at(i) == brackets[j*2+1]){
-                closingBracketsCount++;
-            }
+    if(opening=='(' && closing == ')') return true;
+    else if(opening == '{' && closing == '}') return true;
+    else if(opening == '[' && closing == ']') return true;
+    else if(opening == '\'' && closing == '\'') return true;
+    else if(opening == '"' && closing == '"') return true;
+    return false;
+}
+
+//Checks if the specified expression contains valid sequence of brackets
+bool checkBracketsValidation(string exp) 
+{                                    
+    stack<char> sequence;
+    bool isQuote = false;
+    for(int i = 0; i < exp.length(); i++){
+        if(isQuote && !checkIfBracketsArePair(sequence.top(), exp[i])){
+            return false;
+        } else if(isQuote && checkIfBracketsArePair(sequence.top(), exp[i])) {
+            sequence.pop();
+            isQuote = false;
+            continue;
+        }  
+        if(exp[i] == '(' || exp[i] == '{' || exp[i] == '['){
+            sequence.push(exp[i]);
         }
-        if(openingBracketsCount != closingBracketsCount){
-            cout<<"Invald sequence of \""<< brackets[j*2]<<", "<< brackets[j*2+1]<<"\" brackets \n";
-            isValidSequence = false;
+        else if(exp[i] == ')' || exp[i] == '}' || exp[i] == ']'){
+            if(sequence.empty() || !checkIfBracketsArePair(sequence.top(),exp[i]))
+                return false;
+            else
+                sequence.pop();
+        }
+        else if((exp[i]=='\'' or exp[i]=='"') && !sequence.empty()){
+            return false;
+        } else if ((exp[i]=='\'' or exp[i]=='"') && sequence.empty()) {
+            sequence.push(exp[i]);
+            isQuote  = true;
         }
     }
-    return isValidSequence;
+    return sequence.empty() ? true:false;
 }
 
 int main()
 {
-    cout<<"Please enter an expression which contains {}[]() brackets:\n";
+    cout<<"Please enter an expression to check:\n";
     string expression;
     cin>>expression;
-    if(checkBrackets(expression))
+    if(checkBracketsValidation(expression))
     {
-        cout<<"You have entered valid sequence of brackest. \n";
+        cout<<":) You have entered valid sequence of brackest. \n";
+    } else {
+        cout<<":( You have entered invalid sequence of brackest. \n";
     }
     return 0;
 }

@@ -8,6 +8,11 @@ class my_auto_ptr
 private:
 	T* m_memory;
 public:
+	//This is default constructor of the my_auto_ptr class.
+	my_auto_ptr()
+	:m_memory(NULL)
+	{}
+
 	//This is constructor of the my_auto_ptr class.
 	my_auto_ptr(T* memory)
 	:m_memory(memory)
@@ -43,6 +48,7 @@ public:
 	{
 		m_memory = obj.m_memory;
 		obj.m_memory = NULL;
+		return *this;
 	}
 };
 

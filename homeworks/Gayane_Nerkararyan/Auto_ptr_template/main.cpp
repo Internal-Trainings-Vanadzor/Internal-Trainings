@@ -37,7 +37,8 @@ int main()
 
 	int* obj_memory3 = new int(33);
 	my_auto_ptr<int> obj3(obj_memory3);
-	my_auto_ptr<int> obj4 = obj3;
+	my_auto_ptr<int> obj4;
+	obj4 = obj3;
 	std::cout << "The value of the obj4 equals: " << obj4.get_value() << std::endl;
 	//The value of the obj3 equals NULL. 
 
