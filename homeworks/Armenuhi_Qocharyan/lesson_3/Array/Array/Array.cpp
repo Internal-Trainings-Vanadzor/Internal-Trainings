@@ -49,7 +49,7 @@ void Array::insert(int position, int value) {
 }
 
 int Array::get(int position){
-    if (position < this->maxIndex) {
+    if (position <= this->maxIndex) {
 	return head->array[position];
     } else {
 	std::cout << "Incorrect position ... " << "\n";
@@ -98,19 +98,3 @@ void Array::printArray(){
     std::cout << "\n";
 }	
 
-int main()
-{
-	Array array = Array(10);
-	array.insert(9, 8);
-	array.insert(24, 2);
-	Array array2 =  Array(10);
-	array2.insert(9, 8);
-	array2.insert(11, 2);
-	array.printArray();
-	std::cout << array2.get(9) << "\n";
-	std::cout << array2.get(25) << "\n";
-	if (array == array2) {
-	    std::cout << "eq" << "\n";
-        }
-	return 0; 
-}

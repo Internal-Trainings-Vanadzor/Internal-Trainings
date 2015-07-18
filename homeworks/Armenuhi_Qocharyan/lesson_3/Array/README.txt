@@ -36,7 +36,7 @@ ENVIRONMENT:
  
 BUILD/RUN GOOGLE TESTS
 	build
-        //TBD
+            g++ -I /usr/include arrayUnittest.cc Array.cpp /usr/lib/libgtest_main.a -lgtest -lpthread -o mytest -std=c++11
         run
           ./mytest
 
