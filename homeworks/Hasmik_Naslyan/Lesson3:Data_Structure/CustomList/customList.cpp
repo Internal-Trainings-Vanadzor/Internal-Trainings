@@ -8,47 +8,47 @@ node* head = NULL;
 node* tail = NULL;
 
 
-void add_first(node* par)
+void add_first(node* element)
 {
 	if (head == NULL){
-		head = par;
+		head = element;
 		tail = head;
 	} else { 
-		par->next = head;
-		head = par;
+		element->next = head;
+		head = element;
 	}
 
 	std::cout<<"First element has been entered"<<std::endl;
 }
 
 
-void print(node* par)
+void print(node* element)
 {
-	std::cout << "par = " << par->data;
+	std::cout << "element = " << element->data;
 }
 
-void add_last(node* par)
+void add_last(node* element)
 {
 	if (tail == NULL){
-		tail = par;
+		tail = element;
 		head = tail;
 	} else { 
-		tail->next = par;
-		tail = par;
+		tail->next = element;
+		tail = element;
 	}
 
 	std::cout<<"Last element has been entered"<<std::endl;
 }
 
-void add_middle(int i, node* par){
+void add_middle(int i, node* element){
 	node* t = new node;
 	t = head;
 	for(int j = 0; j < i; ++j){
 		t=t->next;
 	}
 	node* tt = t;
-	t->next = par;
- 	par->next = tt;
+	t->next = element;
+ 	element->next = tt;
 }
 
 int main()
