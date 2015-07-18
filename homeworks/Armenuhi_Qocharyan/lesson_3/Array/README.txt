@@ -41,3 +41,11 @@ BUILD/RUN GOOGLE TESTS
           ./mytest
 
 //TBD add tests for checking all functionality
+
+GENERATE DOC
+	1. install doxygen 
+		sudo apt-get install doxygen
+	2. Generate doc
+		doxygen Array.h
+	3. open index.html
+		${path_Array.h}/html/index.html
