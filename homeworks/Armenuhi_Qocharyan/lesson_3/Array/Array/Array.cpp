@@ -30,7 +30,7 @@ Array::Array(const Array &original) {
 } 
  
 Array::~Array() {
-    delete[] head->array;
+    delete[] head;
 }
 
  
@@ -74,7 +74,7 @@ void Array::resize(int newSize){
 	//std::cout << head->array[i] << "  ";
     }
     
-    delete[] head->array;
+    delete[] head;
     head->array = temp->array;
     head->size = temp->size; 
 }
