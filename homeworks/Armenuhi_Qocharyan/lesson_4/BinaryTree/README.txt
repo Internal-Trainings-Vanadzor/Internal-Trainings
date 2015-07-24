@@ -1,14 +1,13 @@
 AUTHOR: Armenuhi 
-GOALS: Investigate standard structures
+GOALS: Investigate standard structures - Binary Tree 
 DIRECTORY STRUCTURE: 
-	Array/
-		Array.h -> interface of dynamic array functionality
-		Array.cpp -> implementation of dynamic array functionality
+	BinaryTree/
+		BinaryTree.h -> interface of dynamic array functionality
+		BinaryTree.cpp -> implementation of dynamic array functionality
 		Node.h -> Structure to Array
-		run.cpp //TBD Need to create
-		arrayUnittest.cc -> google tests for array //TBD need to create
+		BinaryTreeUnittest.cc -> google tests for Binary Tree
 USAGE:
-	cd Array directory
+	cd BinaryTree/ directory
 	build // TBD
 	run out file
 		./out
@@ -36,7 +35,7 @@ ENVIRONMENT:
  
 BUILD/RUN GOOGLE TESTS
 	build
-            g++ -I /usr/include arrayUnittest.cc Array.cpp /usr/lib/libgtest_main.a -lgtest -lpthread -o mytest -std=c++11
+	    g++ -I /usr/include  BinaryTreeUnittest.cc BinaryTree.cpp /usr/lib/libgtest_main.a -lgtest -lpthread -o mytest -std=c++1
         run
           ./mytest
 
@@ -48,4 +47,4 @@ GENERATE DOC
 	2. Generate doc
 		doxygen Array.h
 	3. open index.html
-		${path_ArrayDir}/html/index.html
+		${path_BinaryTreeDir}/html/index.html

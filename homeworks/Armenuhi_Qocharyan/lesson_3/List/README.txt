@@ -7,7 +7,7 @@ DIRECTORY STRUCTURE:
 		Node.h -> Structure to List
 		run.cpp
 		listUnittest.cc -> google tests for List
-USEAG:
+USAGE:
 	cd List directory
 	build run.cpp
 		g++ -std=c++11 run.cpp -o out
