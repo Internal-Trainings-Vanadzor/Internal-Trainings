@@ -19,7 +19,7 @@ void BinaryTree::destroyTree(Node *leaf) {
 }
 
 void BinaryTree::insert(int key, Node *leaf) {
-  if(key < leaf->key_value && leaf->exists) {
+  if(key < leaf->key_value) {
     if(leaf->left != NULL) {
         insert(key, leaf->left);
     } else {
@@ -27,7 +27,7 @@ void BinaryTree::insert(int key, Node *leaf) {
       leaf->left->key_value = key;
       leaf->left->exists = true;
     }  
-  } else if(key > leaf->key_value && leaf->exists) {
+  } else if(key > leaf->key_value) {
         if(leaf->right != NULL) {
             insert(key, leaf->right);
         } else {
@@ -35,7 +35,7 @@ void BinaryTree::insert(int key, Node *leaf) {
               leaf->right->key_value = key;
               leaf->right->exists = true;
         }
-    } else {
+    } else if (!leaf->exists) {
          leaf->exists = true; 
     }
 }
