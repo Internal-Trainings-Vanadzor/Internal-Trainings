@@ -2,9 +2,9 @@ AUTHOR: Armenuhi
 GOALS: Investigate standard structures - Binary Tree 
 DIRECTORY STRUCTURE: 
 	BinaryTree/
-		BinaryTree.h -> interface of dynamic array functionality
-		BinaryTree.cpp -> implementation of dynamic array functionality
-		Node.h -> Structure to Array
+		BinaryTree.h -> interface of tree
+		BinaryTree.cpp -> implementation of tree
+		Node.h -> Structure to tree
 		BinaryTreeUnittest.cc -> google tests for Binary Tree
 USAGE:
 	cd BinaryTree/ directory

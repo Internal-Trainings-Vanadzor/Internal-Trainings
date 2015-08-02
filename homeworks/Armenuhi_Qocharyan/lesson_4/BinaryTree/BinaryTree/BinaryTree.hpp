@@ -1,7 +1,7 @@
 #ifndef Tree
 #define Tree
 
-#include "Node.h"
+#include "Node.hpp"
 
 class  BinaryTree {
     public:
@@ -39,7 +39,7 @@ class  BinaryTree {
 	/**
 	*RemoveElement
 	*/
-	Node *removeElement(int key);
+	void removeElement(int key);
 
     private:
         bool exists(int key, Node *leaf);

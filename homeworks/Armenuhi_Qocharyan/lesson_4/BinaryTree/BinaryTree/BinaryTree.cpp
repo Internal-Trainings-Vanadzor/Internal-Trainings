@@ -1,5 +1,5 @@
 #include <cstdint>
-#include "BinaryTree.h"
+#include "BinaryTree.hpp"
 
 BinaryTree::BinaryTree() {
     root = NULL;
@@ -42,11 +42,11 @@ void BinaryTree::insert(int key, Node *leaf) {
 
 
 Node *BinaryTree::search(int key, Node *leaf) {
-        if(leaf != NULL && leaf->exists) {
-            if(key == leaf->key_value) {
+        if(leaf != NULL) {
+            if(key == leaf->key_value && leaf->exists) {
                return leaf;
             }
-            if(key < leaf->key_value) {
+            if(key < leaf->key_value && leaf->exists) {
                 return search(key, leaf->left);
             } else {
                 return search(key, leaf->right);
@@ -97,10 +97,13 @@ void BinaryTree::destroyTree() {
 }
 
 
-Node *BinaryTree::removeElement(int key) {
+void BinaryTree::removeElement(int key) {
     Node* updateNode = search(key, root);
-    updateNode->exists = false;
-    return updateNode;
+    if (updateNode != NULL) {
+        updateNode->exists = false;
+    } else {
+	std::cout << key << " element does not exist ..." << "\n";
+    }
 }
 
 //int main() { 
