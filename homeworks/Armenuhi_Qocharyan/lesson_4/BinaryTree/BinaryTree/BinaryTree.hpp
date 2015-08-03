@@ -44,7 +44,7 @@ class  BinaryTree {
     private:
         bool exists(int key, Node *leaf);
         void destroyTree(Node *leaf);
-        void insert(int key, Node *leaf);
+        void insert(int key, Node *leaf, Node *parent);
         Node *search(int key, Node *leaf);
         Node *root; 
 }; 
