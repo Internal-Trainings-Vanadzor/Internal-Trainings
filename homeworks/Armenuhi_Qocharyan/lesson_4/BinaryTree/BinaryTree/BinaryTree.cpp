@@ -24,28 +24,18 @@ void BinaryTree::insert(int key, Node* leaf, Node* parent) {
         insert(key, leaf->left, leaf);
     } else {
             if (parent->right != NULL && parent->left != NULL) {
-                leaf->left = new Node;
-                leaf->left->key_value = key;
-                leaf->left->exists = true;
+                leaf->left = new Node(key);
             } else {
 		if (parent->right == NULL) {
                     int tempNode = parent->key_value;
                     parent->key_value = leaf->key_value;
-		    parent->right = new Node;
-	            parent->right->key_value = tempNode;
-                    parent->right->exists = true;
-	            parent->left = new Node;
-                    parent->left->key_value = key;
-                    parent->left->exists = true;
+		    parent->right = new Node(tempNode);
+	            parent->left = new Node(key);
 		} else {
                     int tempNode = parent->key_value;
                     parent->key_value = key;
-		    parent->right = new Node;
-                    parent->right->exists = true;
-	            parent->right->key_value = tempNode;
-	            parent->left = new Node;
-                    parent->left->exists = true;
-                    parent->left->key_value = leaf->key_value;
+		    parent->right = new Node(tempNode);
+	            parent->left = new Node(leaf->key_value);
                     
                 }
             }
@@ -55,29 +45,18 @@ void BinaryTree::insert(int key, Node* leaf, Node* parent) {
             insert(key, leaf->right, leaf);
         } else {
             if (parent->right != NULL && parent->left != NULL) {
-                leaf->right = new Node;
-                leaf->right->key_value = key;
-                leaf->right->exists = true;
+                leaf->right = new Node(key);
             } else {
                 if (parent->left == NULL) {
                     int tempNode = parent->key_value;
                     parent->key_value = leaf->key_value;
-		    parent->left = new Node;
-	            parent->left->key_value = tempNode;
-                    parent->left->exists = true;
-	            parent->right = new Node;
-                    parent->right->key_value = key;
-                    parent->right->exists = true;
+		    parent->left = new Node(tempNode);
+	            parent->right = new Node(key);
 		} else {
                     int tempNode = parent->key_value;
                     parent->key_value = key;
-		    parent->left = new Node;
-                    parent->left->exists = true;
-	            parent->left->key_value = tempNode;
-	            parent->right = new Node;
-                    parent->right->exists = true;
-                    parent->right->key_value = leaf->key_value;
-                   
+		    parent->left = new Node(tempNode);
+	            parent->right = new Node(leaf->key_value);
                 }
             }
         }  
@@ -125,16 +104,12 @@ bool BinaryTree::exists(int key, Node *leaf) {
 void BinaryTree::insert(int key) {
   if(root != NULL) {
       if (key < root->key_value && root->left == NULL) {
-           root->left = new Node;
-           root->left->key_value = key;
-           root->left->exists = true;
+           root->left = new Node(key);
            root->left->left = NULL;
            root->left->right = NULL;
       } else {
          if (key > root->key_value && root->right == NULL ) {
-               root->right = new Node;
-               root->right->key_value = key;
-               root->right->exists = true;
+               root->right = new Node(key);
                root->right->left = NULL;
                root->right->right = NULL;
 	 
@@ -149,9 +124,7 @@ void BinaryTree::insert(int key) {
          }
       }
   } else {
-      root = new Node;
-      root->key_value = key;
-      root->exists = true;
+      root = new Node(key);
       root->left = NULL;
       root->right = NULL;
   }

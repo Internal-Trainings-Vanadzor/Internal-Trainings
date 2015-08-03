@@ -9,6 +9,11 @@ struct Node {
       bool exists = false;
       Node *left = NULL;
       Node *right = NULL;
+
+      Node(int value) {
+        exists = true;
+       key_value  = value;
+      }
 };
 
 #endif
