@@ -105,14 +105,9 @@ void BinaryTree::insert(int key) {
   if(root != NULL) {
       if (key < root->key_value && root->left == NULL) {
            root->left = new Node(key);
-           root->left->left = NULL;
-           root->left->right = NULL;
       } else {
          if (key > root->key_value && root->right == NULL ) {
                root->right = new Node(key);
-               root->right->left = NULL;
-               root->right->right = NULL;
-	 
          } else {
 	     if (key < root->key_value) {  
                  insert(key, root, root->left);
@@ -125,8 +120,6 @@ void BinaryTree::insert(int key) {
       }
   } else {
       root = new Node(key);
-      root->left = NULL;
-      root->right = NULL;
   }
 }
 
