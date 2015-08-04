@@ -8,7 +8,7 @@ DoubleLinkedList::DoubleLinkedList()
 }
 DoubleLinkedList::~DoubleLinkedList()
 {
-    //TODO
+    erase();
 }
 
 bool DoubleLinkedList::isEmpty(){
