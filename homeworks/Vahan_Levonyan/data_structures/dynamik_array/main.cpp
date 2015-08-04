@@ -14,7 +14,7 @@ int main() {
     array.push_back(0);
     array.remove(5);
     array.insert(7, 48);
-    array.set(-5, 104);
+    array.set(4, 104);
     for(int i = 0; i < array.size(); ++i){
         std::cout << array.getValue(i) << std::endl;
     }
