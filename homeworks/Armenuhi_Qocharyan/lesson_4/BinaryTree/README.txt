@@ -45,6 +45,6 @@ GENERATE DOC
 	1. install doxygen 
 		sudo apt-get install doxygen
 	2. Generate doc
-		doxygen Array.h
+		doxygen BinaryTree.h
 	3. open index.html
 		${path_BinaryTreeDir}/html/index.html
