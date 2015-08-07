@@ -141,14 +141,3 @@ void BinaryTree::removeElement(int key) {
     }
 }
 
-//int main() { 
-//   BinaryTree tree;	
-//   tree.insert(8);
-//   tree.insert(6);
-//   tree.insert(12);
-//   Node *b = tree.removeElement(12);
-//   Node *a = tree.search(8);
-//   std::cout << a->exists << "\n";
-//   std::cout << b->exists << "\n";
-//   return 0;
-//}
