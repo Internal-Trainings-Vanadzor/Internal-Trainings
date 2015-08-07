@@ -1,4 +1,4 @@
-SOURCE=BinaryTree.cpp main.cpp
+SOURCE=Node.cpp BalancedBinaryTree.cpp main.cpp
 MYPROGRAM=binary_tree
 
 CC=g++
