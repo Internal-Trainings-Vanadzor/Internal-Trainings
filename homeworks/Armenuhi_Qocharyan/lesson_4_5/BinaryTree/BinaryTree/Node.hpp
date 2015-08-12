@@ -11,7 +11,6 @@ struct Node {
       Node *right;
 
       Node(int value) {
-          exists = false;
           left = NULL;
           right = NULL;
           exists = true;
