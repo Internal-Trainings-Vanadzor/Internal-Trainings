@@ -6,9 +6,9 @@
 struct Node {
     public:
       int key_value;
-      bool exists = false;
-      Node *left = NULL;
-      Node *right = NULL;
+      bool exists;
+      Node *left;
+      Node *right;
 
       Node(int value) {
           exists = false;
