@@ -11,8 +11,11 @@ struct Node {
       Node *right = NULL;
 
       Node(int value) {
-        exists = true;
-       key_value  = value;
+          exists = false;
+          left = NULL;
+          right = NULL;
+          exists = true;
+          key_value  = value;
       }
 };
 
