@@ -1,5 +1,5 @@
-#ifndef MY_OBJECT 
-#define MY_OBJECT 
+#ifndef MY_LINE 
+#define MY_LINE 
 
 #include <iostream>
 #include "point.cpp"
@@ -9,16 +9,14 @@ class MyLine {
     public:
         void setStart(const MyPoint& arg);
         void setEnd(const MyPoint& arg);
-        const MyPoint& getStart();
-        const MyPoint& getEnd();
+        const MyPoint& getStart() const;
+        const MyPoint& getEnd() const;
         MyLine(const MyPoint& _x , const MyPoint& _y );
-        MyLine(MyLine&);
+        MyLine(const MyLine&);
         ~MyLine();
         // 
-        float area();
-        bool isContains(MyPoint);
-    private:
-        float area(MyPoint, MyPoint);
+        float area() const;
+        bool isContains(const MyPoint&) const;
     private:
         MyPoint _start;
         MyPoint _end;

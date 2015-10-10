@@ -5,13 +5,16 @@
 
 class MyPoint {
     public:
-        void setX(float x);
-        void setY(float y);
-        float getX();
-        float getY();
-        MyPoint(float _x , float _y );
-        MyPoint(MyPoint&);
+        void setX(const float& x);
+        void setY(const float& y);
+        const float& getX() const;
+        const float& getY() const;
+        MyPoint(const float& _x , const float& _y );
+        MyPoint(const MyPoint&);
         ~MyPoint();
+        float area() const;
+        float distanceTo(const MyPoint&) const;
+        bool isContains(const MyPoint&) const;
     private:
         float x;
         float y;

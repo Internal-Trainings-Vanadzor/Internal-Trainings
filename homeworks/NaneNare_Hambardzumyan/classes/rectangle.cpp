@@ -1,32 +1,34 @@
+#include "rectangle.h"
+
 void MyRectangle::setPoint1(const MyPoint& arg) {
-    this->_point1 = arg._point1;
+    this->_point1 = arg;
 }
 
 void MyRectangle::setPoint2(const MyPoint& arg) {
-    this->_point2 = arg._point2;
+    this->_point2 = arg;
 }
 
 void MyRectangle::setPoint3(const MyPoint& arg) {
-    this->_point3 = arg._point3;
+    this->_point3 = arg;
 }
 
 void MyRectangle::setPoint4(const MyPoint& arg) {
-    this->_point4 = arg._point4;
+    this->_point4 = arg;
 }
 
-const MyPoint& MyRectangle::getPoint1() {
+const MyPoint& MyRectangle::getPoint1() const {
     return _point1;
 }
 
-const MyPoint& MyRectangle::getPoint2() {
+const MyPoint& MyRectangle::getPoint2() const {
     return _point2;
 }
 
-const MyPoint& MyRectangle::getPoint3() {
+const MyPoint& MyRectangle::getPoint3() const {
     return _point3;
 }
 
-const MyPoint& MyRectangle::getPoint4() {
+const MyPoint& MyRectangle::getPoint4() const {
     return _point4;
 }
 
@@ -38,7 +40,7 @@ MyRectangle::MyRectangle(const MyPoint& _p1, const MyPoint& _p2,
     _point4 = _p4;
 }
 
-MyRectangle::MyRectangle(MyRectangle& arg) {
+MyRectangle::MyRectangle(const MyRectangle& arg) {
     _point1 = arg._point1;
     _point2 = arg._point2;
     _point3 = arg._point3;
@@ -52,25 +54,18 @@ MyRectangle::~MyRectangle() {
     _point4.~MyPoint();
 }
 
-float MyRectangle::area() {
+float MyRectangle::area() const {
     return area(_point1,_point2,_point3);
 }
 
-float MyRectangle::area(MyPoint point1, MyPoint point2,
-        MyPoint point3) {
-    float d1 = distance(point1,point2);
-    float d2 = distance(point3,point2);
+float MyRectangle::area(const MyPoint& point1, const MyPoint& point2,
+        const MyPoint& point3) const {
+    float d1 = point1.distanceTo(point2);
+    float d2 = point3.distanceTo(point2);
     return d1*d2;
 }
 
-bool MyRectangle::isContains(MyPoint arg) {
+bool MyRectangle::isContains(const MyPoint& arg) const {
     //TODO:
     return false;
-}
-
-float MyRectangle::distance(MyPoint start, MyPoint end) {
-    float x1 = start.getX() - end.getX();
-    float y1 = start.getY() - end.getY();
-    float d = sqrt(x1*x1 + y1*y1);
-    return d;
 }
