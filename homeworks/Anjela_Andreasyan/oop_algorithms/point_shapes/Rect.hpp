@@ -5,12 +5,11 @@
 
 class Rect{
     public:
-        Rect(Point* A, float height, float width);
-        float getArea();
-        bool contains(Point* point);
-        ~Rect();
+        Rect(Point A, float height, float width);
+        const float area();
+        const bool contains(Point point);
     private:
-        Point* m_A;
+        Point m_A;
         float m_height;
         float m_width;
 

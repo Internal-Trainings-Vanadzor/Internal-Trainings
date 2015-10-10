@@ -1,12 +1,28 @@
+#include <math.h>
+
 #include "Point.hpp"
 
 Point::Point(float x, float y): m_x(x), m_y(y) {
 }
 
-float Point::getX(){
+Point::Point(Point& point) : m_x(point.getX()), m_y(point.getY()){
+}
+
+const float Point::getX(){
     return m_x;
 }
 
-float Point::getY(){
+const float Point::getY(){
     return m_y;
+}
+
+const float Point::getDistance(Point dest){
+    float x_distance = dest.getX() - this->getX();
+    float y_distance = dest.getY() - this->getY();
+    float length = sqrt( x_distance * x_distance + y_distance * y_distance);
+    return length;
+}
+
+const float Point::area(){
+    return 0;
 }

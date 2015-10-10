@@ -5,13 +5,13 @@
 
 class Line{
     public:
-        Line(Point* start, Point* end);
-        float getLength();
-        bool contains(Point* point);
-        ~Line();
+        Line(Point start, Point end);
+        const float getLength();
+        const float area();
+        const bool contains(Point point);
     private:
-        Point* m_start;
-        Point* m_end;
+        Point m_start;
+        Point m_end;
 
 };
 

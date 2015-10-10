@@ -8,12 +8,12 @@
 #include "Elipse.hpp"*/
 
 int main(){
-    Point* p1 = new Point(2, 3);
-    Point* p2 = new Point(5, 6);
-    Line* line = new Line (p1, p2);
-    Rect* rect = new Rect (p1, 6, 7);
-    std::cout<<"Pass"<<"\n";
-    std::cout<<(*line).getLength()<<"\n";
-    std::cout<<(*rect).getArea()<<"\n";
+    Point p1(2, 3);
+    Point p2(5, 6);
+    Line line(p1, p2);
+    Rect rect(p1, 6, 7);
+    std::cout<<line.getLength()<<"\n";
+    std::cout<<line.area()<<"\n";
+    std::cout<<rect.area()<<"\n";
     return 0;
 }

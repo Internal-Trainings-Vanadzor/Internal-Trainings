@@ -4,8 +4,11 @@
 class Point{
     public:
         Point(float x, float y);
-        float getX();
-        float getY();
+        Point(Point& point);
+        const float getX();
+        const float getY();
+        const float getDistance(Point dest);
+        const float area();
     private:
         float m_x;
         float m_y;
