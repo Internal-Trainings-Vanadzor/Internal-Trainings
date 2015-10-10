@@ -5,6 +5,8 @@
 Rect::Rect(Point A, float height, float width): m_A(A), m_height(height), m_width(width){
 }
 
+Rect::Rect(const Rect& rect): m_A(rect.m_A), m_height(rect.m_height), m_width(rect.m_width){
+}
 const float Rect::area(){
     return m_height * m_width;
 

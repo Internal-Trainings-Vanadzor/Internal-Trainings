@@ -6,6 +6,7 @@
 class Rect{
     public:
         Rect(Point A, float height, float width);
+        Rect(const Rect& rect);
         const float area();
         const bool contains(Point point);
     private:

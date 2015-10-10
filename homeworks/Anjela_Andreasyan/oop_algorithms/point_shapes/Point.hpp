@@ -4,7 +4,7 @@
 class Point{
     public:
         Point(float x, float y);
-        Point(Point& point);
+        Point(const Point& point);
         const float getX();
         const float getY();
         const float getDistance(Point dest);
