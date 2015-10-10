@@ -5,7 +5,7 @@
 Point::Point(float x, float y): m_x(x), m_y(y) {
 }
 
-Point::Point(Point& point) : m_x(point.getX()), m_y(point.getY()){
+Point::Point(const Point& point) : m_x(point.m_x), m_y(point.m_y){
 }
 
 const float Point::getX(){
