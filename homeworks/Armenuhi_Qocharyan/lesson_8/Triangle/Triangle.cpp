@@ -2,53 +2,54 @@
 #define MY_TRIANGLE_1
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "Point.hpp"
 #include "Triangle.hpp"
 
 
 
-Triangle::Triangle(struct Point *point_first, 
-           struct Point *point_second, 
-           struct Point *point_thirds) {
-    this->point_one = point_first;
-    this->point_two = point_second;
-    this->point_thirds = point_thirds;
+Triangle::Triangle(Point point_first, 
+           Point point_second, 
+           Point point_thirds): 
+           point_one(point_first), 
+           point_two(point_second), 
+           point_thirds(point_thirds) 
+{
 } 
 
 
-int Triangle::area() {
-    return abs ((this->point_one->x *
-           (this->point_two->y - this->point_thirds->y) + 
-            this->point_two->x *
-           (this->point_thirds->y - this->point_one->y) + 
-            this->point_thirds->x * 
-           (this->point_one->y - this->point_two->y))/2.0);
+float Triangle::area() {
+    return area(this->point_one, this->point_two, this->point_thirds);
 } 
 
-
-int Triangle::area(int x1, int y1, int x2, int y2, int x3, int y3){
-     return abs ((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2.0);
+//TBD: Add accuracy checking mechanism
+float Triangle::area(Point point_1, Point point_2, Point point_3){
+     return sqrt(fabs ((point_1.getX()*(point_2.getY() - point_3.getY())
+            + point_2.getX()*(point_3.getY() - point_1.getY()) 
+            + point_3.getX()*(point_1.getY() - point_2.getY()))*0.5));
 } 
 
 // coordinats of p x1, y1
-bool Triangle::isInside(int x1, int y1) {
+bool Triangle::isInside(Point point) {
    /* Calculate area of triangle ABC */
-   int A = area (this->point_one->x, this->point_one->y, 
-                   this->point_two->x, this->point_two->y, 
-                   this->point_thirds->x, this->point_thirds->y);
+   float A = area (this->point_one,  
+                   this->point_two, 
+                   this->point_thirds);
  
    /* Calculate area of triangle PBC */  
-   int A1 = area (x1, y1, this->point_two->x, this->point_two->y, 
-                   this->point_thirds->x, this->point_thirds->y);
+   float A1 = area (point, 
+                    this->point_two,
+                    this->point_thirds);
  
    /* Calculate area of triangle PAC */  
-   int A2 = area (this->point_one->x, this->point_one->y, x1, y1,  
-                    this->point_thirds->x, this->point_thirds->y);
+   float A2 = area (this->point_one, 
+                     point,  
+                     this->point_thirds);
  
    /* Calculate area of triangle PAB */   
-   int A3 = area (this->point_one->x, this->point_one->y, 
-                   this->point_two->x, this->point_two->y, x1, y1);
-   
+   float A3 = area (this->point_one, 
+                    this->point_two, 
+                    point);
    /* Check if sum of A1, A2 and A3 is same as A */
    return (A == A1 + A2 + A3);
 }

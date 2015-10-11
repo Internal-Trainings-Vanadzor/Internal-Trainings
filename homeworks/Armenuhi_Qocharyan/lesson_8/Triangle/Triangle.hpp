@@ -1,32 +1,33 @@
 #ifndef MY_TRIANGLE 
 #define MY_TRIANGLE
 #include <iostream>
+#include "Point.hpp"
 
 class Triangle {
 
 private:
-      struct Point *point_one;
-      struct Point *point_two;
-      struct Point *point_thirds;
+      Point point_one;
+      Point point_two;
+      Point point_thirds;
+      float area(Point point_1, Point point_2, Point point_3); 
 
 public:
-       /*
+       /**
 	* The constructor
 	*
 	*/
-      Triangle(struct Point *point_first, 
-               struct Point *point_second, 
-               struct Point *point_thirds); 
+      Triangle(Point point_first, 
+               Point point_second, 
+               Point point_thirds); 
 
-      /*
+      /**
        * Calculate area
        */
-      int area(); 
-      /*
-      * Check if it is some point
-      */
-      bool isInside(int x1, int y1); 
-      private: int area(int x1, int y1, int x2, int y2, int x3, int y3); 
+      float area(); 
+      /**
+       * Check if it is some point
+       */
+      bool isInside(Point point); 
       
       
 };
