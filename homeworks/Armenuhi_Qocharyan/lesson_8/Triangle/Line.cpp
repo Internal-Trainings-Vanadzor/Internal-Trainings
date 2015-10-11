@@ -10,10 +10,12 @@ const bool Line::contains(Point point){
          this->pointOne.getY() == this->pointTwo.getY()) {
          // pointOne and pointTwo same points
          return true;
-     } else if (this->pointOne.getX() == this->pointTwo.getX() == point.getX()) {
+     } else if (this->pointOne.getX() == this->pointTwo.getX() && 
+                this->pointOne.getX() == point.getX()) {
          // x = const
          return true;
-     } else if (this->pointOne.getY() == this->pointTwo.getY() == point.getY()) {
+     } else if (this->pointOne.getY() == this->pointTwo.getY() &&
+                this->pointOne.getY() == point.getY()) {
          // y = const
          return true;
      } else if ((point.getX() - this->pointOne.getX())*
