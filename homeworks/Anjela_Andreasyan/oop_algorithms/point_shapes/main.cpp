@@ -11,6 +11,8 @@
 #include "Circle.hpp"
 #include "Elipse.hpp"*/
 
+#include "Canvas.hpp"
+
 int main(){
 
     Point p1(2, 3);
@@ -37,5 +39,7 @@ int main(){
     for(std::vector<Rect>::size_type i = 0; i != rects.size(); i++) {
         std::cout<<"Rect i area " << rects[i].area()<<"\n";
     }
+    Canvas canvas;
+    canvas.pointComponent();
     return 0;
 }

@@ -1,4 +1,4 @@
-SOURCE=main.cpp Point.cpp Line.cpp Rect.cpp Sort.hpp
+SOURCE=main.cpp Point.cpp Line.cpp Rect.cpp Canvas.cpp Sort.hpp
 MYPROGRAM=shapes
 
 CC=g++
