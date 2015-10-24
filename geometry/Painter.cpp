@@ -22,7 +22,7 @@ void Painter::drawText(const Text& arg) const{
 }
 /* Point */
 void Painter::drawPoint(const Point& p) const{
-    assert(false && "TODO: The method is not implemented yet");
+    drawPoint(p.x(), p.y());
 }
 void Painter::drawPoint(const CoordinateType& x, const CoordinateType& y) const{
     assert(false && "TODO: The method is not implemented yet");
