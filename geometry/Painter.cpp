@@ -10,7 +10,7 @@ Painter::Painter(const Painter& arg):m_canvas(arg.m_canvas){
 Painter::~Painter(){
 }
 /* Chart */
-void Painter::drawChart(const SizeType** area) const{
+void Painter::drawChart(const CoordinateType** area) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Text */
@@ -21,52 +21,69 @@ void Painter::drawText(const Text& arg) const{
 void Painter::drawPoint(const Point& p) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawPoint(const SizeType& x, const SizeType& y) const{
+void Painter::drawPoint(const CoordinateType& x, const CoordinateType& y) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Line */
 void Painter::drawLine(const Line& line) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawLine(const SizeType& x1, const SizeType& y1,
-        const SizeType& x2, const SizeType& y2) const{
+void Painter::drawLine(const CoordinateType& x1, const CoordinateType& y1,
+        const CoordinateType& x2, const CoordinateType& y2) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Rect */
 void Painter::drawRect(const Rect& rect) const{
-    assert(false && "TODO: The method is not implemented yet");
+    CoordinateType x1 = rect.lowerLeft().x();
+    CoordinateType y1 = rect.lowerLeft().y();
+    CoordinateType x2 = x1 + rect.height();
+    CoordinateType y2 = y1;
+    CoordinateType x3 = x2;
+    CoordinateType y3 = y2 - rect.width();
+    CoordinateType x4 = x1;
+    CoordinateType y4 = y3; 
+    drawRect(x1,y1,x2,y2,x3,y3, x4,y4);
+
 }
-void Painter::drawRect(const SizeType& x1, const SizeType& y1,
-        const SizeType& x2, const SizeType& y2,
-        const SizeType& x3, const SizeType& y3,
-        const SizeType& x4, const SizeType& y4) const{
+void Painter::drawRect(const CoordinateType& x1, const CoordinateType& y1,
+        const CoordinateType& x2, const CoordinateType& y2,
+        const CoordinateType& x3, const CoordinateType& y3,
+        const CoordinateType& x4, const CoordinateType& y4) const{
+    drawLine(x1,y1, x2,y2);
+    drawLine(x2,y2, x3,y3);
+    drawLine(x3,y3, x4,y4);
+    drawLine(x4,y4, x1,y1);
 }
 /* Triangle */
 void Painter::drawTriangle(const Triangle& trg) const{
+    drawTriangle(trg.a().x(), trg.a().y(),trg.b().x(), trg.b().y(),trg.c().x(), trg.c().y());
 }
-void Painter::drawTriangle(const SizeType& x1, const SizeType& y1,
-        const SizeType& x2, const SizeType& y2,
-        const SizeType& x3, const SizeType& y3) const{
+void Painter::drawTriangle(const CoordinateType& x1, const CoordinateType& y1,
+        const CoordinateType& x2, const CoordinateType& y2,
+        const CoordinateType& x3, const CoordinateType& y3) const{
+    drawLine(x1,y1, x2,y2);
+    drawLine(x2,y2, x3,y3);
+    drawLine(x3,y3, x1,y1);
 }
 /* Circle */
 void Painter::drawCircle(const Circle& crc) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawCircle(const SizeType& x, const SizeType& y,
-        const SizeType& r) const{
+void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
+        const CoordinateType& r) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Ellipse */
 void Painter::drawEllipse(const Ellipse& crc) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawEllipse(const SizeType& x1, const SizeType& y1,
-        const SizeType& x2, const SizeType& y2,
-        const SizeType d) const{
+void Painter::drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
+        const CoordinateType& x2, const CoordinateType& y2,
+        const CoordinateType d) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawEllipse(const SizeType& x, const SizeType& y,
-        const SizeType& r1, const SizeType& r2) const{
+void Painter::drawEllipse(const CoordinateType& x, const CoordinateType& y,
+        const CoordinateType& r1, const CoordinateType& r2) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Shape */
