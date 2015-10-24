@@ -1,5 +1,8 @@
 #include "Painter.h"
 #include <cassert>
+#include <cmath>
+#include <algorithm>
+
 using namespace Geometry;
 
 Painter::Painter(const Canvas arg ): m_canvas(arg){
@@ -25,13 +28,51 @@ void Painter::drawPoint(const CoordinateType& x, const CoordinateType& y) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Line */
-void Painter::drawLine(const Line& line) const{
-    assert(false && "TODO: The method is not implemented yet");
+void Painter::drawLine(const Line& line) const {
+    drawLine(line.start().x(), line.start().y(), line.end().x(), line.end().y());
 }
+
+
 void Painter::drawLine(const CoordinateType& x1, const CoordinateType& y1,
-        const CoordinateType& x2, const CoordinateType& y2) const{
-    assert(false && "TODO: The method is not implemented yet");
+        const CoordinateType& x2, const CoordinateType& y2) const {
+    int x_1 = x1;
+    int x_2 = x2;
+    int y_1 = y1;
+    int y_2 = y2;
+    const bool steep = (abs(y_2 - y_1) > abs(x_2 - x_1));
+    if(steep) {
+        std::swap(x_1, y_1);
+        std::swap(x_2, y_2);
+    }
+    if(x_1 > x_2) {
+        std::swap(x_1, x_2);
+        std::swap(y_1, y_2);
+    }
+    const int dx = x_2 - x_1;
+    const int dy = abs(y_2 - y_1);
+    float error = dx / 2.0f;
+    const int ystep = (y_1 < y_2) ? 1 : -1;
+    int y = (int)y_1;
+    const int maxX = (int)x_2;
+    for(int x=(int)x_1; x <= maxX; x++) {
+        if(steep) {
+            drawPoint(y,x);//color
+        } else {
+            drawPoint(x,y);//color
+        }
+        error -= dy;
+        if(error < 0) {
+            y += ystep;
+            error += dx;
+        }
+        error -= dy;
+        if(error < 0) {
+            y += ystep;
+            error += dx;
+        }
+    }
 }
+
 /* Rect */
 void Painter::drawRect(const Rect& rect) const{
     CoordinateType x1 = rect.lowerLeft().x();
