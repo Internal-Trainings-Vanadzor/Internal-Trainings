@@ -1,4 +1,4 @@
-#include "Painter.h"
+#include "headers/Painter.h"
 #include <cassert>
 #include <cmath>
 #include <algorithm>
@@ -52,18 +52,12 @@ void Painter::drawLine(const CoordinateType& x1, const CoordinateType& y1,
     const int dy = abs(y_2 - y_1);
     float error = dx / 2.0f;
     const int ystep = (y_1 < y_2) ? 1 : -1;
-    int y = (int)y_1;
-    const int maxX = (int)x_2;
-    for(int x=(int)x_1; x <= maxX; x++) {
+    int y = y_1;
+    for(int x=(int)x_1; x <= x_2; x++) {
         if(steep) {
             drawPoint(y,x);//color
         } else {
             drawPoint(x,y);//color
-        }
-        error -= dy;
-        if(error < 0) {
-            y += ystep;
-            error += dx;
         }
         error -= dy;
         if(error < 0) {
