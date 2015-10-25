@@ -3,15 +3,8 @@
 #include <vector>
 #include <windows.h>
 #include <string>
+#include "Point.h"
 
-enum COLOR {WHITE, BLACK, RED};
-
-class UI_Point {
-    public:
-        int x;
-        int y;
-        COLOR color;
-};
 
 class IM_Canvas{
 public:
@@ -28,7 +21,7 @@ private:
 	unsigned int m_width;
     unsigned int m_height;
 	int m_backgroundColor;
-    std::vector<UI_Point> m_points;
+	std::vector<Point> m_points;
 	char m_sign;
 	char** Matrix;
 	

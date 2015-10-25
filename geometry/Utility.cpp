@@ -1,6 +1,13 @@
-#include "Utility.h"
 #include <random>
 #include <time.h>
+#include "Utility.h"
+#include "Geometry.h"
+#include "Point.h"
+#include "Canvas.h"
+#include "Line.h"
+#include "Rect.h"
+#include "Triangle.h"
+#include "Circle.h"
 
 namespace Utility {
 
@@ -14,29 +21,30 @@ namespace {
    }
 }
 
-Geometry::Point createPoint()
+Point createPoint()
 {
-   return Geometry::Point(getRandomNumber(), getRandomNumber());
+   return Point(getRandomNumber(), getRandomNumber());
 }
 
-Geometry::Line createLine()
+Line createLine()
 {
-   return Geometry::Line(createPoint(), createPoint());
+   return Line(createPoint(), createPoint());
 }
 
-Geometry::Rect createRect()
+Rect createRect()
 {
-   return Geometry::Rect(createPoint(), getRandomNumber(), getRandomNumber());
+   return Rect(createPoint(), getRandomNumber(), getRandomNumber());
 }
 
-Geometry::Triangle createTriangle()
+Triangle createTriangle()
 {
-   return Geometry::Triangle(createPoint(), createPoint(), createPoint());
+
+	return Triangle(createPoint(), createPoint(), createPoint());
 }
 
-Geometry::Circle createCircle()
+Circle createCircle()
 {
-   return Geometry::Circle(Geometry::Point(), getRandomNumber());
+   return Circle(Point(), getRandomNumber());
 }
 
 }

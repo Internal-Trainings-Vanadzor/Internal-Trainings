@@ -3,32 +3,23 @@
 
 #include <string>
 #include "Geometry.h"
+#include "Point.h"
+#include "Canvas.h"
+#include "Line.h"
+#include "Rect.h"
+#include "Triangle.h"
+#include "Circle.h"
+#include "Ellipse.h"
 
-namespace Geometry {
 
-    typedef std::string Text;
-    typedef char SymbType;
-    typedef unsigned int SizeType;
-    typedef SizeType Colour;
+typedef std::string Text;
+typedef char SymbType;
+typedef unsigned int SizeType;
+typedef SizeType Colour;
 
-
-    //TODO: remove
-    class Shape {
-    };
-
-    class Ellipse {
-        // TODO mv to Geometry
-    };
-
-    class Canvas {
+class Painter {
         public:
-            Canvas();
-            Canvas(const Canvas& arg );
-    };
-
-    class Painter {
-        public:
-            Painter(const Canvas arg );
+            Painter(const IM_Canvas arg );
             Painter(const Painter& arg);
             ~Painter();
         public:
@@ -58,8 +49,8 @@ namespace Geometry {
             void drawCircle(const Circle& crc) const;
             void drawCircle(const CoordinateType& x, const CoordinateType& y,
                     const CoordinateType& r) const;
-            /* Ellipse */
-            void drawEllipse(const Ellipse& crc) const;
+            /* Ellipse */ //temporarily disabled
+            //void drawEllipse(const Ellipse& crc) const;
             void drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
                     const CoordinateType& x2, const CoordinateType& y2,
                     const CoordinateType d) const;
@@ -68,17 +59,15 @@ namespace Geometry {
             /* Shape */
             void drawShape(const Shape& shape) const;
             /* work with member */
-            void setCanvas(const Canvas& arg);
+            void setCanvas(const IM_Canvas& arg);
             void setColour(const Colour& arg);
             void setSymb(const SymbType& arg);
             void setBackground();
             Colour getBackground() const;
             Colour getColour() const;
-            Canvas getCanvas() const;
+            IM_Canvas getCanvas() const;
             SymbType getSymb() const;
-        private:
-            Canvas m_canvas;
-    };
-
-}
+	private:
+		IM_Canvas m_canvas;
+};
 #endif //PAINTER_HPP

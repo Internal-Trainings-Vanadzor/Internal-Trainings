@@ -2,14 +2,20 @@
 #define GEOMETRY_CREATOR_HPP
 
 #include "Geometry.h"
+#include "Point.h"
+#include "Canvas.h"
+#include "Line.h"
+#include "Rect.h"
+#include "Triangle.h"
+#include "Circle.h"
 
 namespace Utility {
 
-Geometry::Point createPoint();
-Geometry::Line createLine();
-Geometry::Rect createRect();
-Geometry::Triangle createTriangle();
-Geometry::Circle createCircle();
+Point createPoint();
+Line createLine();
+Rect createRect();
+Triangle createTriangle();
+Circle createCircle();
 
 }
 

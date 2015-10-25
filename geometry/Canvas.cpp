@@ -1,5 +1,5 @@
 #include <iostream>
-#include"canvas.h"
+#include "canvas.h"
 #include <windows.h>
 
 IM_Canvas::IM_Canvas()
@@ -128,7 +128,7 @@ void IM_Canvas::setPoint(unsigned int x, unsigned int y)
 		Matrix[m_height-1-y][x] = 1;
 	}	
 }
-
+/* :)  
 int main()
 {
 	IM_Canvas obj0;
@@ -146,3 +146,4 @@ int main()
 	
 	return 0;
 }
+*/

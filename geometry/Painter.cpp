@@ -5,7 +5,7 @@
 
 using namespace Geometry;
 
-Painter::Painter(const Canvas arg ): m_canvas(arg){
+Painter::Painter(const IM_Canvas arg ): m_canvas(arg){
 }
 Painter::Painter(const Painter& arg):m_canvas(arg.m_canvas){
 
@@ -115,9 +115,9 @@ void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
     assert(false && "TODO: The method is not implemented yet");
 }
 /* Ellipse */
-void Painter::drawEllipse(const Ellipse& crc) const{
+/*void Painter::drawEllipse(const Ellipse& crc) const{
     assert(false && "TODO: The method is not implemented yet");
-}
+}*/
 void Painter::drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
         const CoordinateType& x2, const CoordinateType& y2,
         const CoordinateType d) const{
@@ -132,7 +132,7 @@ void Painter::drawShape(const Shape& shape) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* work with member */
-void Painter::setCanvas(const Canvas& arg){
+void Painter::setCanvas(const IM_Canvas& arg){
     assert(false && "TODO: The method is not implemented yet");
 }
 void Painter::setColour(const Colour& arg){
@@ -150,7 +150,7 @@ Colour Painter::getBackground() const{
 Colour Painter::getColour() const{
     assert(false && "TODO: The method is not implemented yet");
 }
-Canvas Painter::getCanvas() const{
+IM_Canvas Painter::getCanvas() const{
     assert(false && "TODO: The method is not implemented yet");
 }
 SymbType Painter::getSymb() const{
