@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "Shape.h"
 #include "Geometry.h"
 
 class Circle: public Shape {

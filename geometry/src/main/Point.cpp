@@ -1,13 +1,11 @@
 #include <cmath>
 #include "Point.h"
-#include "Geometry.h"
-using namespace Geometry;
 
-Point::Point (CoordinateType x = 0, CoordinateType y = 0 , COLOR color = WHITE)
-      : m_x(x)
+Point::Point (CoordinateType x, CoordinateType y)
+    : m_x(x)
       , m_y(y)
-	  , m_color(color)
-   {}
+{}
+
 const CoordinateType& Point::x() const
    { 
       return m_x;

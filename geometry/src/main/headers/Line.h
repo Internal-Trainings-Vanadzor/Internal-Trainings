@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "Shape.h"
 #include "Geometry.h"
 using namespace Geometry;
 
@@ -39,7 +39,7 @@ class Line:public Shape {
 		  return start().distance(end());
 	   }
 
-	   bool contains(const Point& p) const{};
+	   bool contains(const Point& p) const;
 
 	private:
 	   Point m_start;

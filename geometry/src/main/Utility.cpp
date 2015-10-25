@@ -4,10 +4,6 @@
 #include "Geometry.h"
 #include "Point.h"
 #include "Canvas.h"
-#include "Line.h"
-#include "Rect.h"
-#include "Triangle.h"
-#include "Circle.h"
 
 namespace Utility {
 
@@ -15,8 +11,9 @@ namespace {
    Geometry::CoordinateType getRandomNumber()
    {
       static time_t t = time(0);
-      srand(unsigned int(t));
-      t = rand() % 1000;
+      unsigned int u_t(t);
+      srand(u_t);
+      u_t = rand() % 1000;
       return rand() % 1000;
    }
 }

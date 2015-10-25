@@ -1,10 +1,17 @@
-CC=gcc
-CFLAGS=-I.
-DEPS = Canvas.h Circle.h Ellipse.h Geometry.h Line.h Painter.h Point.h Rect.h Shape.h StatisticalPainter.h Triangle.h Utility.h
-OBJ = Geometry.o 
+SOURCE=$(wildcard ./src/main/*.cpp)
+HEADERS=./src/main/headers
+CFLAGS=-I$(HEADERS) -std=c++0x
+MYPROGRAM=geometry
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+CC=g++
 
-Geometrymake: $(OBJ)
-	gcc -o $@ $^ $(CFLAGS)
+all: $(MYPROGRAM)
+
+$(MYPROGRAM): $(SOURCE)
+
+	$(CC) $(CFLAGS) $(SOURCE) -o$(MYPROGRAM)
+
+clean:
+
+	rm -f $(MYPROGRAM)
+

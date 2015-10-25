@@ -1,6 +1,6 @@
 #include <iostream>
-#include "canvas.h"
-#include <windows.h>
+#include "Canvas.h"
+//#include <windows.h>
 
 IM_Canvas::IM_Canvas()
 : m_width(10)
@@ -29,6 +29,7 @@ IM_Canvas::IM_Canvas()
 		{
 			Matrix[i][j] = 0;
 		}
+    
 	#ifdef _WIN32
 		setBackgroundColor(m_backgroundColor);
 		#ifdef _WIN64
@@ -74,6 +75,8 @@ IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, char sign,int back
 }
 void IM_Canvas::setBackgroundColor(int backgroundColor)
 {
+    /*
+     * TODO look at this later
 	const WORD colors[] =
 		{
 		0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -87,6 +90,7 @@ void IM_Canvas::setBackgroundColor(int backgroundColor)
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo( hstdout, &csbi );
 	SetConsoleTextAttribute( hstdout, colors[backgroundColor] );
+    */
 }
 void IM_Canvas::CanvasView()
 {

@@ -1,7 +1,6 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 #include <vector>
-#include <windows.h>
 #include <string>
 #include "Point.h"
 

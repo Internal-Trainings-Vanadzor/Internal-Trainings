@@ -1,5 +1,4 @@
 #include "Rect.h"
-#include "Point.h"
 #include "Geometry.h"
 using namespace Geometry;
 
