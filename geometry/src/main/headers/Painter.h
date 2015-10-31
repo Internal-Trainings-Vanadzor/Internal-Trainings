@@ -1,23 +1,9 @@
 #ifndef PAINTER_HPP
 #define PAINTER_HPP
-
-#include <string>
-#include "Geometry.h"
-#include "Point.h"
-#include "Canvas.h"
-#include "Line.h"
-#include "Rect.h"
-#include "Triangle.h"
-#include "Circle.h"
-#include "Ellipse.h"
+#include "ShapePainter.h"
 
 
-typedef std::string Text;
-typedef char SymbType;
-typedef unsigned int SizeType;
-typedef SizeType Colour;
-
-class Painter {
+class Painter:public ShapePainter {
         public:
             Painter(const IM_Canvas arg );
             Painter(const Painter& arg);
