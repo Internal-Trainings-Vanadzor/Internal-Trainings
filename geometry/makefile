@@ -1,17 +1,17 @@
 SOURCE=$(wildcard ./src/main/*.cpp)
 HEADERS=./src/main/headers
 CFLAGS=-I$(HEADERS) -std=c++0x
-MYPROGRAM=geometry
+GEOMETRY=geometry
 
 CC=g++
 
-all: $(MYPROGRAM)
+all: $(GEOMETRY)
 
-$(MYPROGRAM): $(SOURCE)
+$(GEOMETRY): $(SOURCE)
 
-	$(CC) $(CFLAGS) $(SOURCE) -o$(MYPROGRAM)
+	$(CC) $(CFLAGS) $(SOURCE) -o$(GEOMETRY)
 
 clean:
 
-	rm -f $(MYPROGRAM)
+	rm -f $(GEOMETRY)
 
