@@ -1,54 +1,16 @@
 #include <iostream>
-#include "Canvas.h"
+#include "headers/Canvas.h"
 //#include <windows.h>
 
-IM_Canvas::IM_Canvas()
-: m_width(10)
-, m_height(10)
-, m_sign('*')
-, m_backgroundColor(0)
-{
-	Matrix = new char*[m_height];
-	for (unsigned int i = 0; i < m_height; i++)
-	{
-		Matrix[i] = new char[m_width];
-	}
-
-	for (unsigned int i = 0; i < m_height; i++)
-	{
-		Matrix[i][0] = 1;
-	}
-
-	for (unsigned int j = 0; j < m_width; j++)
-	{
-		Matrix[m_height-1][j] = 1;
-	}
-
-	for (unsigned int i = 0; i < m_height-1; i++)
-		for(unsigned int j = 1; j < m_width; j++)
-		{
-			Matrix[i][j] = 0;
-		}
-    
-	#ifdef _WIN32
-		setBackgroundColor(m_backgroundColor);
-		#ifdef _WIN64
-			setBackgroundColor(m_backgroundColor);
-		#endif
-	#endif
-	
-}
-
-IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, char sign,int backgroundColor)
+IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, info backgroundColor)
 : m_width(width)
 , m_height(height)
-, m_sign(sign)
-, m_backgroundColor(backgroundColor)
+, m_backgroundColor(backgroundColor.point_matrix_info)
 {
-	Matrix = new char*[m_height];
+	Matrix = new int*[m_height];
 	for (unsigned int i = 0; i < m_height; i++)
 	{
-		Matrix[i] = new char[m_width];
+		Matrix[i] = new int[m_width];
 	}
 
 	for (unsigned int i = 0; i < m_height; i++)
@@ -106,7 +68,7 @@ void IM_Canvas::CanvasView()
 		{
 			if ( Matrix[k][h] == 1)
 			{				
-				std::cout << m_sign << " ";
+				std::cout << '*' << " ";
 			}
 			else
 			{
@@ -119,33 +81,33 @@ void IM_Canvas::CanvasView()
 
 IM_Canvas::~IM_Canvas()
 {
-	delete[] Matrix;
+	for (unsigned int i = 0; i < m_height; i++)
+	{
+		delete[] Matrix[i];
+	}
 }
-void IM_Canvas::setPointSign(char sign)
-{
-	 m_sign = sign;
-}
-void IM_Canvas::setPoint(unsigned int x, unsigned int y)
+void IM_Canvas::setPoint(unsigned int x, unsigned int y, info point_info)
 {
 	if( x < m_width && y < m_height)
 	{
-		Matrix[m_height-1-y][x] = 1;
+		Matrix[m_height-1-y][x] = point_info.point_matrix_info;
 	}	
 }
-/* :)  
+/*  
 int main()
 {
-	IM_Canvas obj0;
-	IM_Canvas obj1(10,20,'.',2);
-	obj0.CanvasView();
+	info in;
+	in.point_info[0] = '256';
+	in.point_info[1] = '125';
+	in.point_info[2] = '145';
+	in.point_info[3] = '1';
+	IM_Canvas obj1(10,20,in);
 	obj1.CanvasView();
-	obj0.setPoint(2,3);
-	obj0.CanvasView();
-	obj1.setPoint(3,3);
-	obj1.setPoint(5,4);
-	obj1.setPointSign('^');
-	obj1.setBackgroundColor(3);
+	obj1.setPoint(3,3,in);
+	obj1.setPoint(5,4,in);
+	//obj1.setBackgroundColor(3);
 	obj1.CanvasView();
+
 	
 	
 	return 0;

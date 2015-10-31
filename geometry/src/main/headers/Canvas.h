@@ -4,25 +4,24 @@
 #include <string>
 #include "Point.h"
 
+union info {
+	int point_matrix_info;
+	char point_info[4]; 
+};
 
-class IM_Canvas{
+class IM_Canvas {
 public:
-    IM_Canvas();
-	IM_Canvas(unsigned int, unsigned int, char, int);
-   ~IM_Canvas();
-   void CanvasView();
-   void setBackgroundColor(int);//Done for Windows
-   void setPointSign(char);
-   void setPointColor(int);//TODO 
-   void setPoint(unsigned int,unsigned int);
+	IM_Canvas(unsigned int, unsigned int, info);
+   	~IM_Canvas();
+   	void CanvasView();
+   	void setBackgroundColor(int);//Done for Windows
+   	void setPoint(unsigned int,unsigned int, info);
 
 private:
 	unsigned int m_width;
-    unsigned int m_height;
+    	unsigned int m_height;
 	int m_backgroundColor;
-	std::vector<Point> m_points;
-	char m_sign;
-	char** Matrix;
+	int** Matrix;
 	
 };
 
