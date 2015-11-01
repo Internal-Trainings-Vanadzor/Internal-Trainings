@@ -1,3 +1,5 @@
+#ifndef LINE_HPP
+#define LINE_HPP
 #include "Shape.h"
 #include "Geometry.h"
 using namespace Geometry;
@@ -46,3 +48,4 @@ class Line:public Shape {
 	   Point m_end;
 
 };
+#endif

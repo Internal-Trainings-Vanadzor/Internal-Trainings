@@ -1,4 +1,5 @@
-
+#ifndef TRIANGLE_HPP
+#define TRIANGLE_HPP
 #include "Shape.h"
 #include "Geometry.h"
 using namespace Geometry;
@@ -45,3 +46,4 @@ class Triangle:public Shape {
 	   Point m_b;
 	   Point m_c;
 	};
+#endif

@@ -1,3 +1,6 @@
+#ifndef CIRCLE_HPP
+#define CIRCLE_HPP
+
 #include "Shape.h"
 #include "Geometry.h"
 
@@ -17,3 +20,4 @@ private:
    DistanceType m_radius;
 
 };
+#endif

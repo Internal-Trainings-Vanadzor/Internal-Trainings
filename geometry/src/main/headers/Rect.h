@@ -1,3 +1,5 @@
+#ifndef RECT_HPP
+#define RECT_HPP
 #include "Shape.h"
 #include "Geometry.h"
 using namespace Geometry;
@@ -53,3 +55,4 @@ class Rect:public Shape{
 	   SizeType m_width;
 
 };
+#endif

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace Painter {
+namespace STPainter {
 
 void StatisticalPainter::drawPoint(int x, int y) const
 {

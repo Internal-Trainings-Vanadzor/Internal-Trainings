@@ -66,7 +66,7 @@ void IM_Canvas::CanvasView()
 	{
 		for (unsigned int h = 0; h < m_width; h++)
 		{
-			if ( Matrix[k][h] == 1)
+			if ( Matrix[k][h] == 1) // TODO need to be updated to check the last character
 			{				
 				std::cout << '*' << " ";
 			}
@@ -91,13 +91,14 @@ void IM_Canvas::setPoint(unsigned int x, unsigned int y, info point_info)
 	if( x < m_width && y < m_height)
 	{
 		Matrix[m_height-1-y][x] = point_info.point_matrix_info;
+		
 	}	
 }
 /*  
 int main()
 {
 	info in;
-	in.point_info[0] = '256';
+	in.point_info[0] = '256'; //TODO is this a char, should we use char for this case?
 	in.point_info[1] = '125';
 	in.point_info[2] = '145';
 	in.point_info[3] = '1';

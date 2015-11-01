@@ -1,7 +1,7 @@
 #ifndef STATISTICAL_PAINTER_HPP
 #define STATISTICAL_PAINTER_HPP
 
-namespace Painter {
+namespace STPainter {
 
 class StatisticalPainter {
 
