@@ -34,7 +34,7 @@ class Painter:public ShapePainter {
             /* Circle */
             void drawCircle(const Circle& crc) ;
             void drawCircle(const CoordinateType& x, const CoordinateType& y,
-                    const CoordinateType& r) ;
+                    const DistanceType& r) ;
             /* Ellipse */ //temporarily disabled
             //void drawEllipse(const Ellipse& crc) const;
             void drawEllipse(const CoordinateType& x1, const CoordinateType& y1,

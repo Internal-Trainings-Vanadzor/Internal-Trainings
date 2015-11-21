@@ -14,6 +14,10 @@ public:
 
    const Geometry::AreaType area() const;
    bool contains(const Point& p) const;
+   const DistanceType& radius() const;
+   DistanceType& radius();
+   const Point& center() const;
+   Point& width();
 
 private:
    Point m_center;

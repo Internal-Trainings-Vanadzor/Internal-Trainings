@@ -110,11 +110,18 @@ void Painter::drawTriangle(const CoordinateType& x1, const CoordinateType& y1,
 }
 /* Circle */
 void Painter::drawCircle(const Circle& crc) {
-    assert(false && "TODO: The method is not implemented yet");
+    drawCircle(crc.center().x(),crc.center().y(),crc.radius());
 }
 void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
-        const CoordinateType& r) {
-    assert(false && "TODO: The method is not implemented yet");
+        const DistanceType& r) {
+    const float deltaDegree = M_PI/180; // radian
+    const CoordinateType deltaStep = 5;
+    for (int i = 0; i <= 360; i += deltaStep) {
+        float degree = i * deltaDegree;
+        CoordinateType _x = x + cos(degree)*r;
+        CoordinateType _y = y + sin(degree)*r;
+        drawPoint(_x,_y);
+    }
 }
 /* Ellipse */
 /*void Painter::drawEllipse(const Ellipse& crc) const{
