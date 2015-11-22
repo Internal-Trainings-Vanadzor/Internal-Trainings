@@ -5,7 +5,7 @@
 
 class Painter:public ShapePainter {
         public:
-            Painter(IM_Canvas arg );
+            Painter(IM_Canvas* arg );
             Painter(const Painter& arg);
             ~Painter();
         public:
@@ -45,16 +45,16 @@ class Painter:public ShapePainter {
             /* Shape */
             void drawShape(const Shape& shape) const;
             /* work with member */
-            void setCanvas(IM_Canvas& arg);
+            void setCanvas(IM_Canvas* arg);
             void setColour(const Colour& arg);
             void setSymb(const SymbType& arg);
             void setBackground(const Colour& arg);
             Colour getBackground() const;
             Colour getColour() const;
-            IM_Canvas getCanvas() const;
+            const IM_Canvas* getCanvas() const;
             SymbType getSymb() const;
 	private:
-		IM_Canvas m_canvas;
+	IM_Canvas* m_canvas;
         Colour m_colour;
         SymbType m_symb;
 };

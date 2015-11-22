@@ -46,19 +46,36 @@ int main()
    Point start_point(5,5);
    Point end_point(15,15);
    Line line(start_point,end_point);
+   Rect r(start_point, 5, 5);
+   Triangle t(start_point, end_point, Point(5, 10));
    info in;
    in.point_info[0] = '6';
    in.point_info[1] = '5';
    in.point_info[2] = '5';
    in.point_info[3] = '1';
-   IM_Canvas canvas(40,60,in);
-   Painter c_painter(canvas);
-   c_painter.setColour(in.point_matrix_info);
-   c_painter.setColour(1);
+
+   IM_Canvas*  canvas = new IM_Canvas(40,60,in);
+
+   ShapePainter* sp = new Painter(canvas);
+
+	
+
+   sp->setColour(in.point_matrix_info);
+   sp->setColour(1);
+   sp->drawShape(line);
+   sp->drawShape(r);
+   sp->drawShape(t);
+
+
+
+
    c_painter.drawPoint(start_point);
    c_painter.drawPoint(end_point);
    c_painter.drawLine(line);
-   canvas.CanvasView();
+   c_painter.drawRect(r);
+   c_painter.drawTriangle(t);
+   canvas->CanvasView();
+   delete canvas;
    std::cout<<"end main\n";
    return 0;
 }

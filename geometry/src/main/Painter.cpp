@@ -6,7 +6,7 @@
 
 using namespace Geometry;
 
-Painter::Painter(IM_Canvas arg ): m_canvas(arg){
+Painter::Painter(IM_Canvas* arg ) : m_canvas(arg){
 }
 Painter::Painter(const Painter& arg):m_canvas(arg.m_canvas){
 
@@ -30,7 +30,7 @@ void Painter::drawPoint(const CoordinateType& x, const CoordinateType& y) {
     std::cout<<"start\n";
     in.point_matrix_info = m_colour;
     std::cout<<"end\n";
-    m_canvas.setPoint(x, y, in);
+    m_canvas->setPoint(x, y, in);
     std::cout<<"end function\n";
 }
 /* Line */
@@ -134,7 +134,7 @@ void Painter::drawShape(const Shape& shape) const{
     assert(false && "TODO: The method is not implemented yet");
 }
 /* work with member */
-void Painter::setCanvas(IM_Canvas& arg){
+void Painter::setCanvas(IM_Canvas* arg){
     m_canvas = arg;
 }
 void Painter::setColour(const Colour& arg){
@@ -154,7 +154,7 @@ Colour Painter::getBackground() const{
 Colour Painter::getColour() const{
     return m_colour;
 }
-IM_Canvas Painter::getCanvas() const{
+const IM_Canvas* Painter::getCanvas() const{
     return m_canvas;
 }
 SymbType Painter::getSymb() const{
