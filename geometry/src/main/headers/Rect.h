@@ -4,7 +4,7 @@
 #include "Geometry.h"
 using namespace Geometry;
 
-class Rect:public Shape{
+class Rect : public Shape {
 	public:
 	   Rect(const Point& ll, SizeType h, SizeType w)
 		  : m_lowerLeft(ll)
@@ -48,6 +48,9 @@ class Rect:public Shape{
 	   }
 
 	   bool contains(const Point& p) const;
+
+	   ShapeType getType() const
+	   { return rect; }
 
 	private:
 	   Point m_lowerLeft;

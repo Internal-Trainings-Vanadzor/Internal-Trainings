@@ -42,6 +42,8 @@ class Line:public Shape {
 	   }
 
 	   bool contains(const Point& p) const;
+	   ShapeType getType() const
+	   { return line; }
 
 	private:
 	   Point m_start;

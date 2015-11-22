@@ -37,6 +37,7 @@ IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, info backgroundCol
 }
 void IM_Canvas::setBackgroundColor(int backgroundColor)
 {
+	m_backgroundColor = backgroundColor;
     /*
      * TODO look at this later
 	const WORD colors[] =
@@ -68,7 +69,7 @@ void IM_Canvas::CanvasView()
 		{
 			if ( Matrix[k][h] == 1) // TODO need to be updated to check the last character
 			{				
-				std::cout << '*' << " ";
+				std::cout << "* ";
 			}
 			else
 			{
@@ -85,13 +86,13 @@ IM_Canvas::~IM_Canvas()
 	{
 		delete[] Matrix[i];
 	}
+	delete [] Matrix;
 }
 void IM_Canvas::setPoint(unsigned int x, unsigned int y, info point_info)
 {
 	if( x < m_width && y < m_height)
 	{
 		Matrix[m_height-1-y][x] = point_info.point_matrix_info;
-		
 	}	
 }
 /*  

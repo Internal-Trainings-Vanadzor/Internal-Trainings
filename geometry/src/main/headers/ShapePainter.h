@@ -19,8 +19,29 @@ typedef unsigned int SizeType;
 typedef SizeType Colour;
 
 class ShapePainter {
-        public:
-            /* Point */
+
+public :
+            /* Shape */
+            void drawShape(const Shape& shape) 
+	    {
+		switch(shape.getType())
+		{
+			case rect :
+				drawRect(static_cast<const Rect&>(shape));
+				break;
+			case line :
+				drawLine(static_cast<const Line&>(shape));
+				break;
+			case circle : 
+            			drawCircle(static_cast<const Circle&>(shape));
+				break;
+			default :
+				throw 1;	
+		}
+	    }
+            
+protected :
+	    /* Point */
             virtual void drawPoint(const Point& p)  = 0;
             /* Line */
             virtual void drawLine(const Line& line)  = 0;
@@ -32,16 +53,15 @@ class ShapePainter {
             virtual void drawCircle(const Circle& crc)  = 0;
             /* Ellipse */ 
             //TBD
-            /* Shape */
-            virtual void drawShape(const Shape& shape) const = 0;
             /* work with member */
-            virtual void setCanvas(IM_Canvas& arg) = 0;
-            virtual void setColour(const Colour& arg) = 0;
-            virtual void setSymb(const SymbType& arg) = 0;
+public :
+            virtual void setCanvas(IM_Canvas* arg) = 0;
+            virtual void setColour(const Colour& arg) = 0; //TODO setPen -> Pen { color, style }
+            virtual void setSymb(const SymbType& arg) = 0; //TODO setPen
             virtual void setBackground(const Colour& arg) = 0;
             virtual Colour getBackground() const = 0;
             virtual Colour getColour() const = 0;
-            virtual IM_Canvas getCanvas() const = 0;
+            virtual const IM_Canvas* getCanvas() const = 0;
             virtual SymbType getSymb() const = 0;
 };
 #endif //SHAPEPAINTER_HPP

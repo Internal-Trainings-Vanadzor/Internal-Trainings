@@ -34,7 +34,7 @@ class Painter:public ShapePainter {
             /* Circle */
             void drawCircle(const Circle& crc) ;
             void drawCircle(const CoordinateType& x, const CoordinateType& y,
-                    const CoordinateType& r) ;
+                    const DistanceType& r) ;
             /* Ellipse */ //temporarily disabled
             //void drawEllipse(const Ellipse& crc) const;
             void drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
@@ -55,7 +55,7 @@ class Painter:public ShapePainter {
             SymbType getSymb() const;
 	private:
 	IM_Canvas* m_canvas;
-        Colour m_colour;
+        Colour m_colour;// Pen -> { color, style } 
         SymbType m_symb;
 };
 #endif //PAINTER_HPP

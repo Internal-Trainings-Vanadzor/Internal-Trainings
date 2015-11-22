@@ -9,6 +9,10 @@ namespace Geometry {
 	typedef double DistanceType;
 	typedef double AreaType;
 	typedef unsigned int SizeType;
+
+	enum class ShapeType {
+		rect = 0, triangle, circle, line, elipse
+	};
 }
 
 #endif
