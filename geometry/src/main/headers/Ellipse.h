@@ -7,29 +7,40 @@ using namespace Geometry;
 
 class Ellipse:public Shape {
     public:
-	Ellipse (const Point& radiusOne, const Point& radiusTwo, const Point& center)
-		:m_center(center)
-		,m_radiusOne(radiusOne)
-		,m_radiusTwo(radiusTwo)
+	Ellipse (Point* focuseOne, Point* focuseTwo, Point* point)
+		:m_point(point)
+		,m_focuseTwo(focuseOne)
+		,m_focuseOne(focuseTwo)
 	{} 
 
-	bool contains(const Point& p) const; 
+	bool contains(Point* p) const; 
 	const Geometry::AreaType area() const; 
-	const Point& center() const {
-		return m_center;
+	const Point& getPoint() const {
+		return *m_point;
 	};
-	const Point& radiusOne() const {
-		return m_radiusOne;
-	}
+	const Point& focuseOne() const {
+		return *m_focuseTwo;
+	};
 	const Point& focusTow() const {
-		return m_radiusTwo;
-	}
-	ShapeType getType() const
-	{ return elipse; }
-
+		return *m_focuseOne;
+	};
+	Geometry::ShapeType getType() const
+	{ 
+		return Geometry::ShapeType::elipse; 
+	};
     private:	
-	Point m_radiusOne;
-	Point m_radiusTwo;
-	Point m_center;
-    };
+ 	CoordinateType getMidpointCoordinate(const CoordinateType& x1, const CoordinateType& x2) const;	
+ 	SizeType getMiddle(AreaType lineOne, AreaType lineTwo) const;	
+	AreaType distance (const CoordinateType& x1, const CoordinateType& y1, const CoordinateType& x2,const CoordinateType& y2) const;
+	double getXCoordinatByLineLen(const CoordinateType& x, const double& l);
+	double getiYCoordinatByLineLen(const CoordinateType& y, const double& l);
+
+	Point* m_focuseTwo;
+	Point* m_focuseOne;
+	Point* point;
+	AreaType m_bigRadius;
+	AreaType m_smallRadius;
+	
+	Point* m_point;
+};
 #endif
