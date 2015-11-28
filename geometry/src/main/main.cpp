@@ -81,8 +81,7 @@ int main()
 //in.point_info[2] = '5';
 //in.point_info[3] = '1';
 
-	IM_Canvas*  canvas1 = new IM_Canvas(40,60);
-	canvas1->setBackgroundPen(pen);
+	IM_Canvas*  canvas1 = new IM_Canvas(40,60, pen);
 	ShapePainter* sp1 = new Painter(canvas1);
 	sp1->setPen(pen1);
 	sp1->drawShape(line);

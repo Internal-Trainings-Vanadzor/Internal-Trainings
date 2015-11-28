@@ -2,31 +2,36 @@
 #include "headers/Canvas.h"
 //#include <windows.h>
 
-IM_Canvas::IM_Canvas(unsigned int width, unsigned int height)//, info backgroundColor)
+IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, Pen pen)//, info backgroundColor)
 : m_width(width)
 , m_height(height)
+, m_pen(pen)
 //, m_backgroundColor(backgroundColor.point_matrix_info)
 {
-	Matrix = new int*[m_height];
+	Matrix = new Pen*[m_height];
 	for (unsigned int i = 0; i < m_height; i++)
 	{
-		Matrix[i] = new int[m_width];
+		Matrix[i] = new Pen[m_width];
 	}
 
 	for (unsigned int i = 0; i < m_height; i++)
 	{
-		Matrix[i][0] = 1;
+		Matrix[i][0].symbol = m_pen.symbol;
+		Matrix[i][0].color = m_pen.color;
 	}
 
 	for (unsigned int j = 0; j < m_width; j++)
 	{
-		Matrix[m_height-1][j] = 1;
+		Matrix[m_height-1][j].symbol = m_pen.symbol;
+		Matrix[m_height-1][j].color = m_pen.color;
 	}
 
 	for (unsigned int i = 0; i < m_height-1; i++)
 		for(unsigned int j = 1; j < m_width; j++)
 		{
-			Matrix[i][j] = 0;
+			//Matrix[i][j] = 0;
+			Matrix[i][j].symbol = ' ';
+			Matrix[i][j].color = 0;
 		}
 	#ifdef _WIN32
 		setBackgroundColor(m_backgroundColor);
@@ -73,9 +78,9 @@ void IM_Canvas::CanvasView()
 	{
 		for (unsigned int h = 0; h < m_width; h++)
 		{
-			if ( Matrix[k][h] != 0) // TODO need to be updated to check the last character
+			if ( Matrix[k][h].color != 0) // TODO need to be updated to check the last character
 			{			
-				std::cout << m_pen.symbol <<" ";
+				std::cout << Matrix[k][h].symbol <<" ";
 			}
 			else
 			{
@@ -100,8 +105,7 @@ void IM_Canvas::setPoint(unsigned int x, unsigned int y)
 {
 	if( x < m_width && y < m_height)
 	{
-		std::cout << m_pen.color << "       ****  ///"<< "\n";
-		Matrix[m_height-1-y][x] = m_pen.color;
+		Matrix[m_height-1-y][x] = m_pen;
 	}	
 }
 
@@ -110,7 +114,7 @@ void IM_Canvas::setPoint(unsigned int x, unsigned int y, Pen pen)
 	if( x < m_width && y < m_height)
 	{
 		m_pen = pen;
-		Matrix[m_height-1-y][x] = pen.color;
+		Matrix[m_height-1-y][x] = pen;
 	}	
 }
 /*  

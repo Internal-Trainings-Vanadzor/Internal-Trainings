@@ -13,7 +13,7 @@ struct Pen {
 
 class IM_Canvas {
 	public:
-		IM_Canvas(unsigned int, unsigned int); // TODO do we need to pass info in constructor?
+		IM_Canvas(unsigned int, unsigned int, Pen); // TODO do we need to pass info in constructor?
 		~IM_Canvas();
 		void CanvasView();
 		virtual void setBackgroundPen(Pen);//Done for Windows // TODO Pen
@@ -28,7 +28,8 @@ class IM_Canvas {
 		unsigned int m_width;
 		unsigned int m_height;
 		unsigned int m_backgroundColor;
-		int** Matrix;
+		//int** Matrix;
+		Pen** Matrix;
 		Pen m_pen;
 		//int* Matrix -> size = h * w;
 		//char* h*w / 8 
