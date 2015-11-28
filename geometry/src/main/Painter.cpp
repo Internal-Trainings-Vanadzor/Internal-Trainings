@@ -1,4 +1,6 @@
-#include "headers/Painter.h"
+#include "Painter.h"
+#include "Canvas.h"
+
 #include <cassert>
 #include <cmath>
 #include <iostream>
@@ -13,25 +15,12 @@ Painter::Painter(const Painter& arg):m_canvas(arg.m_canvas){
 }
 Painter::~Painter(){
 }
-/* Chart */
-void Painter::drawChart(const CoordinateType** area) {
-    assert(false && "TODO: The method is not implemented yet");
-}
-/* Text */
-void Painter::drawText(const Text& arg) {
-    assert(false && "TODO: The method is not implemented yet");
-}
 /* Point */
 void Painter::drawPoint(const Point& p) {
     drawPoint(p.x(), p.y());
 }
 void Painter::drawPoint(const CoordinateType& x, const CoordinateType& y) {
-    info in;
-    std::cout<<"start\n";
-    in.point_matrix_info = m_colour;
-    std::cout<<"end\n";
-    m_canvas->setPoint(x, y, in);
-    std::cout<<"end function\n";
+    m_canvas->setPoint(x, y, m_pen);
 }
 /* Line */
 void Painter::drawLine(const Line& line) {
@@ -129,13 +118,10 @@ void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
 }*/
 void Painter::drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
         const CoordinateType& x2, const CoordinateType& y2,
-        const CoordinateType d) const{
+        const CoordinateType& x3, const CoordinateType& y3) const{
     assert(false && "TODO: The method is not implemented yet");
 }
-void Painter::drawEllipse(const CoordinateType& x, const CoordinateType& y,
-        const CoordinateType& r1, const CoordinateType& r2) const{
-    assert(false && "TODO: The method is not implemented yet");
-}
+
 /* Shape */
 void Painter::drawShape(const Shape& shape) const{
     assert(false && "TODO: The method is not implemented yet");
@@ -144,26 +130,25 @@ void Painter::drawShape(const Shape& shape) const{
 void Painter::setCanvas(IM_Canvas* arg){
     m_canvas = arg;
 }
-void Painter::setColour(const Colour& arg){
-    m_colour = arg;
+void Painter::setPen(const Pen& pen){
+    m_pen = pen;
 }
-void Painter::setSymb(const SymbType& arg){
-        m_symb = arg;
-}
+
 void Painter::setBackground(const Colour& arg){
 //    m_canvas.setBackground(arg);
     assert(false && "TODO: The method is not implemented yet");
 }
+
 Colour Painter::getBackground() const{
     assert(false && "TODO: The method is not implemented yet");
     //return m_canvas.getBackground();
 }
-Colour Painter::getColour() const{
-    return m_colour;
+Colour Painter::getPenColour() const{
+    return m_pen.color;
 }
 const IM_Canvas* Painter::getCanvas() const{
     return m_canvas;
 }
-SymbType Painter::getSymb() const{
-    return m_symb;
+SymbType Painter::getPenSymb() const{
+    return m_pen.symbol;
 }

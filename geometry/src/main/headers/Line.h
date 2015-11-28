@@ -2,6 +2,8 @@
 #define LINE_HPP
 #include "Shape.h"
 #include "Geometry.h"
+#include "Point.h"
+
 using namespace Geometry;
 
 class Line:public Shape {
@@ -43,7 +45,7 @@ class Line:public Shape {
 
 	   bool contains(const Point& p) const;
 	   ShapeType getType() const
-	   { return line; }
+	   { return ShapeType::line; }
 
 	private:
 	   Point m_start;

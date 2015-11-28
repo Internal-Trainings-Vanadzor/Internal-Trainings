@@ -3,6 +3,9 @@
 
 #include "Shape.h"
 #include "Geometry.h"
+#include "Point.h"
+
+using namespace Geometry;
 
 class Circle: public Shape {
 
@@ -19,7 +22,7 @@ public:
 	const Point& center() const;
 	Point& width();
 	ShapeType getType() const
-	{ return circle; }
+	{ return ShapeType::circle; }
 
 private:
 	Point m_center;

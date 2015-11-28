@@ -1,6 +1,8 @@
 #ifndef SHAPEPAINTER_HPP
 #define SHAPEPAINTER_HPP
 
+#include <iostream>
+
 #include <string>
 #include "Geometry.h"
 #include "Point.h"
@@ -26,13 +28,13 @@ public :
 	    {
 		switch(shape.getType())
 		{
-			case rect :
+			case ShapeType::rect:
 				drawRect(static_cast<const Rect&>(shape));
 				break;
-			case line :
+			case ShapeType::line:
 				drawLine(static_cast<const Line&>(shape));
 				break;
-			case circle : 
+			case ShapeType::circle: 
             			drawCircle(static_cast<const Circle&>(shape));
 				break;
 			default :
@@ -56,12 +58,11 @@ protected :
             /* work with member */
 public :
             virtual void setCanvas(IM_Canvas* arg) = 0;
-            virtual void setColour(const Colour& arg) = 0; //TODO setPen -> Pen { color, style }
-            virtual void setSymb(const SymbType& arg) = 0; //TODO setPen
+            virtual void setPen(const Pen& pen) = 0; //TODO setPen -> Pen { color, style }
             virtual void setBackground(const Colour& arg) = 0;
             virtual Colour getBackground() const = 0;
-            virtual Colour getColour() const = 0;
+            virtual Colour getPenColour() const = 0;
+            virtual SymbType getPenSymb() const = 0;
             virtual const IM_Canvas* getCanvas() const = 0;
-            virtual SymbType getSymb() const = 0;
 };
 #endif //SHAPEPAINTER_HPP

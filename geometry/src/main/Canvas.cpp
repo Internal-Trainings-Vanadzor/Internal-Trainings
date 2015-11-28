@@ -2,10 +2,10 @@
 #include "headers/Canvas.h"
 //#include <windows.h>
 
-IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, info backgroundColor)
+IM_Canvas::IM_Canvas(unsigned int width, unsigned int height)//, info backgroundColor)
 : m_width(width)
 , m_height(height)
-, m_backgroundColor(backgroundColor.point_matrix_info)
+//, m_backgroundColor(backgroundColor.point_matrix_info)
 {
 	Matrix = new int*[m_height];
 	for (unsigned int i = 0; i < m_height; i++)
@@ -35,7 +35,7 @@ IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, info backgroundCol
 		#endif
 	#endif
 }
-void IM_Canvas::setBackgroundColor(int backgroundColor)
+void IM_Canvas::setBackgroundColor(unsigned int backgroundColor)
 {
 	m_backgroundColor = backgroundColor;
     /*
@@ -55,6 +55,12 @@ void IM_Canvas::setBackgroundColor(int backgroundColor)
 	SetConsoleTextAttribute( hstdout, colors[backgroundColor] );
     */
 }
+
+void IM_Canvas::setBackgroundPen(Pen pen) {
+	m_pen = pen;	
+//TBD
+}
+
 void IM_Canvas::CanvasView()
 {
 	#ifdef _WIN32
@@ -67,9 +73,9 @@ void IM_Canvas::CanvasView()
 	{
 		for (unsigned int h = 0; h < m_width; h++)
 		{
-			if ( Matrix[k][h] == 1) // TODO need to be updated to check the last character
-			{				
-				std::cout << "* ";
+			if ( Matrix[k][h] != 0) // TODO need to be updated to check the last character
+			{			
+				std::cout << m_pen.symbol <<" ";
 			}
 			else
 			{
@@ -88,11 +94,23 @@ IM_Canvas::~IM_Canvas()
 	}
 	delete [] Matrix;
 }
-void IM_Canvas::setPoint(unsigned int x, unsigned int y, info point_info)
+
+
+void IM_Canvas::setPoint(unsigned int x, unsigned int y)
 {
 	if( x < m_width && y < m_height)
 	{
-		Matrix[m_height-1-y][x] = point_info.point_matrix_info;
+		std::cout << m_pen.color << "       ****  ///"<< "\n";
+		Matrix[m_height-1-y][x] = m_pen.color;
+	}	
+}
+
+void IM_Canvas::setPoint(unsigned int x, unsigned int y, Pen pen)
+{
+	if( x < m_width && y < m_height)
+	{
+		m_pen = pen;
+		Matrix[m_height-1-y][x] = pen.color;
 	}	
 }
 /*  

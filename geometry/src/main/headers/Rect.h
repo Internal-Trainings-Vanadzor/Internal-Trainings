@@ -2,6 +2,8 @@
 #define RECT_HPP
 #include "Shape.h"
 #include "Geometry.h"
+#include "Point.h"
+
 using namespace Geometry;
 
 class Rect : public Shape {
@@ -50,7 +52,7 @@ class Rect : public Shape {
 	   bool contains(const Point& p) const;
 
 	   ShapeType getType() const
-	   { return rect; }
+	   { return ShapeType::rect; }
 
 	private:
 	   Point m_lowerLeft;

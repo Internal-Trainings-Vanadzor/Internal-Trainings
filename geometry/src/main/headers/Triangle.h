@@ -2,6 +2,8 @@
 #define TRIANGLE_HPP
 #include "Shape.h"
 #include "Geometry.h"
+#include "Point.h"
+
 using namespace Geometry;
 
 class Triangle:public Shape {
@@ -41,7 +43,7 @@ public:
 	const AreaType area() const;
 	bool contains(const Point& p) const;
 	ShapeType getType() const 
-	{ return triangle; }
+	{ return ShapeType::triangle; }
 private:
 	Point m_a;
 	Point m_b;

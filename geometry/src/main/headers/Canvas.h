@@ -1,9 +1,14 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
-union info {
-	int point_matrix_info;
-	char point_info[4]; 
+//union info {
+//	int point_matrix_info;
+//	char point_info[4]; 
+//};
+
+struct Pen {
+  char symbol;
+  int color;
 };
 
 class IM_Canvas {
@@ -11,8 +16,10 @@ class IM_Canvas {
 		IM_Canvas(unsigned int, unsigned int); // TODO do we need to pass info in constructor?
 		~IM_Canvas();
 		void CanvasView();
-		virtual void setBackgroundiPen(Pen);//Done for Windows // TODO Pen
-		virtual void setPoint(unsigned int,unsigned int, Pen );
+		virtual void setBackgroundPen(Pen);//Done for Windows // TODO Pen
+		virtual void setBackgroundColor(unsigned int);
+		virtual void setPoint(unsigned int,unsigned int);
+		virtual void setPoint(unsigned int,unsigned int, Pen pen);
 
 	private:
 		IM_Canvas(const IM_Canvas&);
@@ -20,6 +27,9 @@ class IM_Canvas {
 	private:
 		unsigned int m_width;
 		unsigned int m_height;
+		unsigned int m_backgroundColor;
+		int** Matrix;
+		Pen m_pen;
 		//int* Matrix -> size = h * w;
 		//char* h*w / 8 
 
