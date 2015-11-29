@@ -4,11 +4,13 @@
 *Content*
 --------
 
- 1. Author
- 2. Goals
- 3. Usage
- 4. Directory structure
- 5. Documentation
+>
+> 1. Author
+> 2. Goals
+> 3. Usage
+> 4. Directory structure
+> 5. Documentation
+>
 
 *Author*
 --------
@@ -22,15 +24,22 @@
 This is the README file of the geometry project which has the following goals:
 
 1. Implement contains(Point) and area() functionality for the following shapes:
-   * Point
-   * Line
-   * Rectangle
-   * Triangle
-   * Circle
-   * Ellipse
+
+>
+>   * Point
+>   * Line
+>   * Rectangle
+>   * Triangle
+>   * Circle
+>   * Ellipse
+>
+
 2. Implement mechanism of painting all shapes mentioned above in the:
-   * Console
-   * PostScript files (e.g JPEG)     
+
+>
+>   * Console
+>   * PostScript files (e.g JPEG)     
+>
 
 *Usage*
 --------
