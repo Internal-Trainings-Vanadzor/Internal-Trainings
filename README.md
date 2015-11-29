@@ -23,7 +23,7 @@
 
 This is the README file of the geometry project which has the following goals:
 
-1. Implement contains(Point) and area() functionality for the following shapes:
+- Implement contains(Point) and area() functionality for the following shapes:
 
 >
 >   * Point
@@ -33,7 +33,8 @@ This is the README file of the geometry project which has the following goals:
 >   * Circle
 >   * Ellipse
 >
-2. Implement mechanism of painting all shapes mentioned above in the:
+
+- Implement mechanism of painting all shapes mentioned above in the:
 
 >
 >   * Console
