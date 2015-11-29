@@ -1,35 +1,43 @@
 **Geometry**
 ========
 
-**Goals**
+*Content*
 --------
 
-This is the README file of the project which has the following goals:
+ 1. Author
+ 2. Goals
+ 3. Usage
+ 4. Directory structure
+ 5. Documentation
 
-1. Create Shapes classes, implement contains(Point) and area() functionality for the following shapes:
+*Author*
+--------
+
+ - *Vanadzor branch of [Instigate Mobile](www.instigatemobile.com)*
+ - E-mail: info@instigatemobile.com
+
+*Goals*
+--------
+
+This is the README file of the geometry project which has the following goals:
+
+1. Implement contains(Point) and area() functionality for the following shapes:
    * Point
    * Line
    * Rectangle
    * Triangle
    * Circle
    * Ellipse
-2. Implement mechanism of painting all shapes which was mentioned above in the:
+2. Implement mechanism of painting all shapes mentioned above in the:
    * Console
    * PostScript files (e.g JPEG)     
 
-
-**Author**
---------
-
-*Vanadzor branch of [Instigate Mobile](www.instigatemobile.com)*
-E-mail: info@instigatemobile.com
-
-**Usage**
+*Usage*
 --------
 
 TODO
 
-**Directory structure**
+*Directory structure*
 --------
 * README.md 
 * geometry
@@ -40,7 +48,7 @@ TODO
       * .cpp - files of implementations
     * tests - unit test for the geometry program
 
-**Documentation**
+*Documentation*
 --------
 
 TODO
