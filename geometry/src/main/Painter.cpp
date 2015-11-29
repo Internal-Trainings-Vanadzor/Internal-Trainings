@@ -105,7 +105,7 @@ void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
         const DistanceType& r) {
     const float deltaDegree = M_PI/180; // radian
     const CoordinateType deltaStep = 5;
-    for (int i = 0; i < 360; i += deltaStep) {
+    for (int i = 1; i <= 360; i += deltaStep) {
         float degree = i * deltaDegree;
         CoordinateType _x = x + cos(degree)*r;
         CoordinateType _y = y + sin(degree)*r;

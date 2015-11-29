@@ -85,8 +85,8 @@ int main()
 	ShapePainter* sp1 = new Painter(canvas1);
 	sp1->setPen(pen1);
 	sp1->drawShape(line);
-//sp1->drawShape(r);
-//sp1->drawShape(c);
+        //sp1->drawShape(r);
+        sp1->drawShape(c);
 //
 //	sp->drawShape(t);
 //	sp->drawCircle(10,10,5);

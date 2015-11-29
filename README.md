@@ -15,7 +15,7 @@
 *Author*
 --------
 
- - *Vanadzor branch of [Instigate Mobile](www.instigatemobile.com)*
+ - *Vanadzor branch of Instigate Mobile: www.instigatemobile.com*
  - E-mail: info@instigatemobile.com
 
 *Goals*
