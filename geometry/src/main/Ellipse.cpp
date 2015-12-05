@@ -4,18 +4,25 @@
 #include "Geometry.h"
 #include "Point.h"
 
+
+#include <iostream>
+
 using namespace Geometry;
+
+Ellipse::Ellipse(const Point& focuseOne, const Point& focuseTwo, const Point& point) 
+      :m_point(point)
+      ,m_focuseTwo(focuseOne)
+      ,m_focuseOne(focuseTwo)
+{
+  m_bigRadius = bigRadius();
+  m_smallRadius = smallRadius();
+  m_center.x() = getMidpointCoordinate(focuseOne.x(), focuseTwo.x());
+  m_center.y() = getMidpointCoordinate(focuseOne.y(), focuseTwo.y());
+
+}
 
 const AreaType Ellipse::area() const
 {
-  	CoordinateType midX = getMidpointCoordinate(m_focuseOne.x(), m_focuseTwo.x());
-  	CoordinateType midY = getMidpointCoordinate(m_focuseOne.y(), m_focuseTwo.y());
-  	AreaType legs = distance(midX, midY, m_focuseOne.x(), m_focuseOne.y());
-	AreaType distFocuseOne = distance(m_point.x(), m_point.y(),  m_focuseOne.x(), m_focuseOne.y());
-        AreaType distFocuseTow = distance(m_point.x(), m_point.y(),  m_focuseTwo.x(), m_focuseTwo.y());
-  	AreaType hypotenuse = getMiddle (distFocuseOne, distFocuseTow);  
-  	AreaType m_smallRadius = sqrt(hypotenuse * hypotenuse - legs * legs); 
-  	AreaType m_bigRadius = hypotenuse; 
   	return M_PI * m_bigRadius * m_smallRadius;
 }
 
@@ -37,6 +44,26 @@ bool Ellipse::contains(const Point& p) const
 AreaType Ellipse::distance (const CoordinateType& x1, const CoordinateType& y1, const CoordinateType& x2,const CoordinateType& y2) const {
 	AreaType dist=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 	return dist;
+}
+
+
+const AreaType& Ellipse::bigRadius() {
+	AreaType distFocuseOne = distance(m_point.x(), m_point.y(),  m_focuseOne.x(), m_focuseOne.y());
+        AreaType distFocuseTow = distance(m_point.x(), m_point.y(),  m_focuseTwo.x(), m_focuseTwo.y());
+  	AreaType hypotenuse = getMiddle (distFocuseOne, distFocuseTow);  
+  	m_bigRadius = hypotenuse; 
+	return m_bigRadius;
+}
+
+const AreaType& Ellipse::smallRadius() {
+  	CoordinateType midX = getMidpointCoordinate(m_focuseOne.x(), m_focuseTwo.x());
+  	CoordinateType midY = getMidpointCoordinate(m_focuseOne.y(), m_focuseTwo.y());
+	AreaType distFocuseOne = distance(m_point.x(), m_point.y(),  m_focuseOne.x(), m_focuseOne.y());
+        AreaType distFocuseTow = distance(m_point.x(), m_point.y(),  m_focuseTwo.x(), m_focuseTwo.y());
+  	AreaType legs = distance(midX, midY, m_focuseOne.x(), m_focuseOne.y());
+  	AreaType hypotenuse = getMiddle (distFocuseOne, distFocuseTow);  
+  	m_smallRadius = sqrt(hypotenuse * hypotenuse - legs * legs); 
+	return m_smallRadius;
 }
 
 double Ellipse::getXCoordinatByLineLen(const CoordinateType& x, const double& l){

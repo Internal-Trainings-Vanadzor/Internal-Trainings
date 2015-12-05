@@ -11,7 +11,7 @@ namespace Geometry {
 	typedef unsigned int SizeType;
 
 	enum class ShapeType {
-		rect = 0, triangle, circle, line, elipse
+		rect = 0, triangle, circle, line, ellipse
 	};
 }
 

@@ -47,6 +47,10 @@ int main()
         shapes.push_back(new Rect(start_point,5, 10 ));
         shapes.push_back(new Line(start_point,end_point ));
     }
+    Point p1(16,16);                                
+    Point p2(26,6);                                 
+    Point p3(18,8);                 
+    shapes.push_back(new  Ellipse(p1,p2,p3));
     drawShapes(shapes, sp1);
 	canvas1->CanvasView();
 	canvas1->canvasViewToFile();

@@ -40,6 +40,9 @@ public :
 			case ShapeType::triangle: 
             			drawTriangle(static_cast<const Triangle&>(shape));
 				break;
+			case ShapeType::ellipse:
+				 drawEllipse(static_cast<const Ellipse&>(shape));
+				break;
 			default :
 				throw 1;	
 		}
@@ -56,8 +59,8 @@ protected :
             virtual void drawTriangle(const Triangle& trg)  = 0;
             /* Circle */
             virtual void drawCircle(const Circle& crc)  = 0;
-            /* Ellipse */ 
-            //TBD
+            /* Ellipse */
+	    virtual void drawEllipse(const Ellipse& el) = 0;
             /* work with member */
 public :
             virtual void setCanvas(IM_Canvas* arg) = 0;

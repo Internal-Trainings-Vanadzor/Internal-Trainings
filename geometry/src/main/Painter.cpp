@@ -111,9 +111,19 @@ void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
     }
 }
 /* Ellipse */
-/*void Painter::drawEllipse(const Ellipse& crc) const{
-    assert(false && "TODO: The method is not implemented yet");
-}*/
+void Painter::drawEllipse(const Ellipse& el) {
+     CoordinateType x0 = el.m_center.x();
+     CoordinateType y0 = el.m_center.y();
+     const float deltaDegree = M_PI/180;
+     const CoordinateType deltaStep = 5;
+     for (int i = 1; i < 360; i += deltaStep) {
+        float degree = i * deltaDegree;
+        CoordinateType x = x0 + cos(degree) * el.m_bigRadius;
+        CoordinateType y = y0 + sin(degree) * el.m_smallRadius;;
+        drawPoint(x,y);
+    }
+
+}
 void Painter::drawEllipse(const CoordinateType& x1, const CoordinateType& y1,
         const CoordinateType& x2, const CoordinateType& y2,
         const CoordinateType& x3, const CoordinateType& y3) const{
