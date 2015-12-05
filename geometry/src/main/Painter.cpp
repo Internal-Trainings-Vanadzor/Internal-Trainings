@@ -30,10 +30,10 @@ void Painter::drawLine(const Line& line) {
 
 void Painter::drawLine(const CoordinateType& x1, const CoordinateType& y1,
         const CoordinateType& x2, const CoordinateType& y2)  {
-    int x_1 = x1;
-    int x_2 = x2;
-    int y_1 = y1;
-    int y_2 = y2;
+    CoordinateType x_1 = x1;
+    CoordinateType x_2 = x2;
+    CoordinateType y_1 = y1;
+    CoordinateType y_2 = y2;
     const bool steep = (abs(y_2 - y_1) > abs(x_2 - x_1));
     if(steep) {
         std::swap(x_1, y_1);
@@ -43,21 +43,19 @@ void Painter::drawLine(const CoordinateType& x1, const CoordinateType& y1,
         std::swap(x_1, x_2);
         std::swap(y_1, y_2);
     }
-    const int dx = x_2 - x_1;
-    const int dy = abs(y_2 - y_1);
+    const CoordinateType dx = x_2 - x_1;
+    const CoordinateType dy = abs(y_2 - y_1);
     float error = dx / 2.0f;
-    const int ystep = (y_1 < y_2) ? 1 : -1;
-    int y = y_1;
-    for(int x=(int)x_1; x <= x_2; x++) {
+    const CoordinateType ystep = (y_1 < y_2) ? 1 : -1;
+    CoordinateType y = y_1;
+    float m = (y_2 - y_1) / (x_2-x_1);
+    for(CoordinateType x=x_1; x <= x_2; x+=0.1) {
         if(steep) {
+            y = m * (x-x_1) + y_1;
             drawPoint(y,x);//color
         } else {
+            y = m * (x-x_1) + y_1;
             drawPoint(x,y);//color
-        }
-        error -= dy;
-        if(error < 0) {
-            y += ystep;
-            error += dx;
         }
     }
 }
@@ -105,7 +103,7 @@ void Painter::drawCircle(const CoordinateType& x, const CoordinateType& y,
         const DistanceType& r) {
     const float deltaDegree = M_PI/180; // radian
     const CoordinateType deltaStep = 5;
-    for (int i = 1; i <= 360; i += deltaStep) {
+    for (int i = 1; i <= 360; i += deltaStep / 2) {
         float degree = i * deltaDegree;
         CoordinateType _x = x + cos(degree)*r;
         CoordinateType _y = y + sin(degree)*r;

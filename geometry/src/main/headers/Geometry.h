@@ -5,7 +5,7 @@
 #include <cassert>
 namespace Geometry {
 
-	typedef int CoordinateType;
+	typedef float CoordinateType;
 	typedef double DistanceType;
 	typedef double AreaType;
 	typedef unsigned int SizeType;

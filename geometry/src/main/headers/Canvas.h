@@ -1,5 +1,6 @@
 #ifndef CANVAS_H
 #define CANVAS_H
+#include <vector>
 
 //union info {
 //	int point_matrix_info;
@@ -19,8 +20,8 @@ class IM_Canvas {
         void canvasViewToFile();
 		virtual void setBackgroundPen(Pen);//Done for Windows // TODO Pen
 		virtual void setBackgroundColor(unsigned int);
-		virtual void setPoint(unsigned int,unsigned int);
-		virtual void setPoint(unsigned int,unsigned int, Pen pen);
+		virtual void setPoint(float,float);
+		virtual void setPoint(float,float, Pen pen);
 
 	private:
 		IM_Canvas(const IM_Canvas&);
@@ -31,6 +32,7 @@ class IM_Canvas {
 		unsigned int m_backgroundColor;
 		//int** Matrix;
 		Pen** Matrix;
+        std::vector<std::vector<float>> Coordinates;
 		Pen m_pen;
 		//int* Matrix -> size = h * w;
 		//char* h*w / 8 

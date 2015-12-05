@@ -98,17 +98,11 @@ void IM_Canvas::canvasViewToFile()
     psOutput.open ("canvas_view.ps");
     psOutput << "%! \n";
     psOutput << "%% Draws the current view of canvas\n";
+    psOutput << "2 2 scale\n";
     psOutput << "/inch {4 mul} def \n";
-    for (unsigned int k = 0; k < m_height ; k++)
-    {
-        for (unsigned int h = 0; h < m_width ; h++)
-        {
-            if ( Matrix[k][h].color != 0) 
-            {
-                psOutput<< h<<" inch "<<m_height - k<<" inch moveto \n";
-                psOutput<< h<<" inch "<<m_height - k<<" inch 1.2 0 360 arc \n2 setlinewidth \n";
-            }
-        }
+    for(std::vector<int>::size_type i = 0; i != Coordinates.size(); i++) {
+        psOutput<< Coordinates[i][0]<<" inch "<<Coordinates[i][1]<<" inch moveto \n";
+        psOutput<< Coordinates[i][0]<<" inch "<<Coordinates[i][1]<<" inch 1.2 0 360 arc \n0."<<Coordinates[i][2] <<" 0."<<(int)Coordinates[i][2]/2 <<" 0."<<(int)Coordinates[i][2]/5<<" setrgbcolor fill \n";
     }
     psOutput << "stroke \n";
     psOutput << "showpage \n";
@@ -125,20 +119,24 @@ IM_Canvas::~IM_Canvas()
 }
 
 
-void IM_Canvas::setPoint(unsigned int x, unsigned int y)
+void IM_Canvas::setPoint(float x, float y)
 {
-	if( x < m_width && y < m_height)
-	{
-		Matrix[m_height-1-y][x] = m_pen;
-	}	
+    setPoint(x,y, m_pen);
+
 }
 
-void IM_Canvas::setPoint(unsigned int x, unsigned int y, Pen pen)
+void IM_Canvas::setPoint(float x, float y, Pen pen)
 {
-	if( x < m_width && y < m_height)
+    int _x = (int) x;
+    int _y = (int) y;
+
+	if( _x < m_width && _y < m_height)
 	{
-		m_pen = pen;
-		Matrix[m_height-1-y][x] = pen;
+        m_pen = pen;
+		Matrix[m_height-1-_y][_x] = m_pen;
+        float colour = m_pen.color;
+        std::vector<float> coord = {x, y, colour};
+        Coordinates.push_back(coord);
 	}	
 }
 /*  
