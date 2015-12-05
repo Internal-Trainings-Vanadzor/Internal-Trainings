@@ -1,5 +1,6 @@
 #include <iostream>
 #include "headers/Canvas.h"
+#include <fstream>
 //#include <windows.h>
 
 IM_Canvas::IM_Canvas(unsigned int width, unsigned int height, Pen pen)//, info backgroundColor)
@@ -89,6 +90,29 @@ void IM_Canvas::CanvasView()
 		}
 		std::cout << std::endl;
 	}
+}
+
+void IM_Canvas::canvasViewToFile()
+{
+    std::ofstream psOutput;
+    psOutput.open ("canvas_view.ps");
+    psOutput << "%! \n";
+    psOutput << "%% Draws the current view of canvas\n";
+    psOutput << "/inch {4 mul} def \n";
+    for (unsigned int k = 0; k < m_height ; k++)
+    {
+        for (unsigned int h = 0; h < m_width ; h++)
+        {
+            if ( Matrix[k][h].color != 0) 
+            {
+                psOutput<< h<<" inch "<<m_height - k<<" inch moveto \n";
+                psOutput<< h<<" inch "<<m_height - k<<" inch 1.2 0 360 arc \n2 setlinewidth \n";
+            }
+        }
+    }
+    psOutput << "stroke \n";
+    psOutput << "showpage \n";
+    psOutput.close();
 }
 
 IM_Canvas::~IM_Canvas()

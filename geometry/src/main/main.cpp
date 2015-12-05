@@ -71,10 +71,11 @@ int main()
 	pen1.symbol = 'a';
 	Point start_point(5,5);
 	Point end_point(15,15);
+	Point tr_point(5,10);
 	Circle c(end_point, 5);
 	Line line(start_point,end_point);
 	Rect r(start_point, 5, 5);
-	Triangle t(start_point, end_point, Point(5, 10));
+	Triangle t(start_point, end_point, tr_point);
 //info in;
 //in.point_info[0] = '6';
 //in.point_info[1] = '5';
@@ -85,14 +86,14 @@ int main()
 	ShapePainter* sp1 = new Painter(canvas1);
 	sp1->setPen(pen1);
 	sp1->drawShape(line);
-        //sp1->drawShape(r);
+        sp1->drawShape(r);
         sp1->drawShape(c);
 //
-//	sp->drawShape(t);
+	sp1->drawShape(t);
 //	sp->drawCircle(10,10,5);
 
 	canvas1->CanvasView();
+	canvas1->canvasViewToFile();
 	//delete canvas;
-	std::cout<<"end main\n";
 	return 0;
 }

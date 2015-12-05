@@ -37,6 +37,9 @@ public :
 			case ShapeType::circle: 
             			drawCircle(static_cast<const Circle&>(shape));
 				break;
+			case ShapeType::triangle: 
+            			drawTriangle(static_cast<const Triangle&>(shape));
+				break;
 			default :
 				throw 1;	
 		}

@@ -16,6 +16,7 @@ class IM_Canvas {
 		IM_Canvas(unsigned int, unsigned int, Pen); // TODO do we need to pass info in constructor?
 		~IM_Canvas();
 		void CanvasView();
+        void canvasViewToFile();
 		virtual void setBackgroundPen(Pen);//Done for Windows // TODO Pen
 		virtual void setBackgroundColor(unsigned int);
 		virtual void setPoint(unsigned int,unsigned int);
